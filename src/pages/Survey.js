@@ -27,15 +27,11 @@ function JobTest() {
     },
   ];
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState({});
   const [result, setResult] = useState(null);
 
-  const handleSelect = (job) => {
-    setResponses((prev) => ({ ...prev, [questions[currentQuestion].id]: job }));
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1); // 다음 질문으로 이동
-    }
+  const handleSelect = (questionId, job) => {
+    setResponses((prev) => ({ ...prev, [questionId]: job }));
   };
 
   const handleSubmit = async () => {
@@ -54,18 +50,31 @@ function JobTest() {
 
       {!result ? (
         <div>
-          <p>{questions[currentQuestion].text}</p>
-          {Object.entries(questions[currentQuestion].options).map(
-            ([job, option]) => (
-              <button key={job} onClick={() => handleSelect(job)}>
-                {option}
-              </button>
-            )
-          )}
+          {questions.map((q) => (
+            <div key={q.id} style={{ marginBottom: "20px" }}>
+              <p>{q.text}</p>
+              {Object.entries(q.options).map(([job, label]) => (
+                <button
+                  key={job}
+                  onClick={() => handleSelect(q.id, job)}
+                  style={{
+                    marginRight: "10px",
+                    backgroundColor:
+                      responses[q.id] === job ? "#8884d8" : "#f0f0f0",
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          ))}
 
-          {currentQuestion === questions.length - 1 && (
-            <button onClick={handleSubmit}>결과 보기</button>
-          )}
+          <button
+            onClick={handleSubmit}
+            disabled={Object.keys(responses).length !== questions.length}
+          >
+            결과 보기
+          </button>
         </div>
       ) : (
         <div>
