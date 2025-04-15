@@ -13,7 +13,7 @@ function Navbar() {
           <Link to="/jobPosting">채용 공고</Link>
         </li>
         <li>
-          <Link to="/analysis">인기기술 분석 & 연봉 정보</Link>
+          <Link to="/analysis">트렌드 분석</Link>
         </li>
         <li>
           <Link to="/Portfolio">포트폴리오 분석</Link>
