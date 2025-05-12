@@ -33,30 +33,28 @@ const Analysis = () => {
           console.error("CSV에서 데이터가 파싱되지 않았습니다");
           return;
         }
-        console.log("파싱된 CSV 데이터:", parsed.data); // 디버깅: 파싱된 데이터 확인
+        console.log("파싱된 CSV 데이터:", parsed.data);
         setParsedData(parsed.data);
 
-        // LanguageHaveWorkedWith → 인기 언어
+        // 인기 언어 분석
         const langMap = {};
         parsed.data.forEach((row, index) => {
           const langs = row["사용하는 프로그래밍 언어"];
           if (langs && typeof langs === "string") {
             langs.split(";").forEach((lang) => {
-              lang = lang.trim(); // 공백 제거
+              lang = lang.trim();
               if (lang) langMap[lang] = (langMap[lang] || 0) + 1;
             });
           } else {
             console.warn(`행 ${index}의 언어 데이터가 유효하지 않습니다:`, row);
           }
         });
-        const langData = Object.entries(langMap).map(([name, count]) => ({
-          name,
-          count,
-        }));
-        console.log("언어 데이터:", langData); // 디버깅: 언어 데이터 확인
+        const langData = Object.entries(langMap)
+          .map(([name, count]) => ({ name, count }))
+          .sort((a, b) => b.count - a.count); // ✅ 내림차순 정렬
         setLanguageData(langData);
 
-        // 전체 DevType 카운트
+        // 개발자 유형 분석
         const devMap = {};
         const allDevTypes = parsed.data
           .filter((row) => row["개발자 유형(백엔드, 프론트엔드 등)"])
@@ -68,11 +66,9 @@ const Analysis = () => {
         allDevTypes.forEach((type) => {
           if (type) devMap[type] = (devMap[type] || 0) + 1;
         });
-        const devTypeData = Object.entries(devMap).map(([name, value]) => ({
-          name,
-          value,
-        }));
-        console.log("개발자 유형 데이터:", devTypeData); // 디버깅: 개발자 유형 데이터 확인
+        const devTypeData = Object.entries(devMap)
+          .map(([name, value]) => ({ name, value }))
+          .sort((a, b) => b.value - a.value);
         setOverallDevTypeCount(devTypeData);
         setDevTypes(Object.keys(devMap).sort());
       })
@@ -84,14 +80,15 @@ const Analysis = () => {
   const getSalaryDataForDev = (devType) => {
     const salaries = parsedData
       .filter((row) => {
-        const types = row["개발자 유형(백엔드, 프론트엔드 등)"]; // ✅ 정확한 헤더명
+        const types = row["개발자 유형(백엔드, 프론트엔드 등)"];
         return types && types.includes(devType);
       })
-      .map((row) => parseFloat(row["연봉을 달러 기준으로 환산한 값"])) // ✅ 정확한 헤더명
+      .map((row) => parseFloat(row["연봉을 달러 기준으로 환산한 값"]))
       .filter((val) => !isNaN(val));
 
     return salaries.length ? average(salaries) : null;
   };
+
   const getEmploymentDistribution = (devType) => {
     const empMap = {};
     parsedData.forEach((row) => {
@@ -101,7 +98,16 @@ const Analysis = () => {
         empMap[emp] = (empMap[emp] || 0) + 1;
       }
     });
-    return Object.entries(empMap).map(([name, value]) => ({ name, value }));
+    return Object.entries(empMap)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value); // ✅ 내림차순 정렬
+  };
+
+  const convertYearStringToNumber = (yearStr) => {
+    if (!yearStr) return Number.MAX_SAFE_INTEGER;
+    if (yearStr.includes("미만")) return 0;
+    const match = yearStr.match(/\d+/);
+    return match ? parseInt(match[0], 10) : Number.MAX_SAFE_INTEGER;
   };
 
   const getYearlySalaryForDev = (devType) => {
@@ -112,8 +118,8 @@ const Analysis = () => {
         return types && types.includes(devType);
       })
       .forEach((row, index) => {
-        const year = row["코딩 경력"]; // ✅ 실제 컬럼명으로 변경
-        const salary = parseFloat(row["연봉을 달러 기준으로 환산한 값"]); // ✅ 실제 컬럼명
+        const year = row["코딩 경력"];
+        const salary = parseFloat(row["연봉을 달러 기준으로 환산한 값"]);
         if (year && !isNaN(salary)) {
           if (!yearMap[year]) yearMap[year] = [];
           yearMap[year].push(salary);
@@ -124,20 +130,21 @@ const Analysis = () => {
           );
         }
       });
+
     const yearlyData = Object.entries(yearMap)
       .map(([year, arr]) => ({
         year,
         averageSalary: Math.round(average(arr)),
       }))
-      .sort((a, b) => a.year.localeCompare(b.year)); // 문자열 기준 정렬로 변경
-
-    console.log(`${devType}의 연차별 연봉 데이터:`, yearlyData);
+      .sort(
+        (a, b) =>
+          convertYearStringToNumber(a.year) - convertYearStringToNumber(b.year)
+      ); // ✅ 시간 순 정렬
     return yearlyData;
   };
 
   return (
     <div className="analysis-container">
-      {/* Main display - top section */}
       <div className="main-display">
         <h2>전체 분석</h2>
 
@@ -170,7 +177,6 @@ const Analysis = () => {
           <p>개발자 유형 데이터가 없습니다.</p>
         )}
 
-        {/* Sidebar and conditional sections */}
         <div className="sidebar-content-container">
           <div className="sidebar">
             <h3>직무 목록</h3>

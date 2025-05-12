@@ -1,0 +1,71 @@
+.commpanysignup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ddd; /* 로그인과 같은 배경색 */
+}
+
+.signup-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group .disabled-input {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff9e6;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fff9e6;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.footer a {
+  color: blue;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

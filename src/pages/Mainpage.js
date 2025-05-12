@@ -36,7 +36,7 @@ const Mainpage = () => {
             </Link>
           </p>
           <p>
-            <Link to="/survey">
+            <Link to="/Library">
               {" "}
               <FontAwesomeIcon icon={faClipboardList} />
             </Link>
@@ -45,6 +45,9 @@ const Mainpage = () => {
             <Link to="/community">
               <FontAwesomeIcon icon={faQuestion} />
             </Link>
+          </p>
+          <p>
+            <Link to="/Survey">설문조사</Link>
           </p>
         </ul>
       </section>

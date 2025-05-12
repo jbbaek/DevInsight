@@ -32,10 +32,10 @@ const MyPage = () => {
             이력서&포트폴리오 등록
           </p>
           <p
-            onClick={() => setSelectedContent("설문조사 결과 화면입니다.")}
+            onClick={() => setSelectedContent("직군추천 결과 화면입니다.")}
             style={styles.menuItem}
           >
-            설문조사 결과
+            직군추천 결과
           </p>
           <p
             onClick={() => setSelectedContent("최근 본 내역 페이지입니다.")}

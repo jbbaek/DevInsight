@@ -110,16 +110,16 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .circle {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #feeb9f;
+  border-color: black;
 }
 
 .submit-button {
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #fff9e6;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -127,5 +127,5 @@ input[type="radio"]:checked + .circle {
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #ede7d5;
 }

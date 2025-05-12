@@ -15,6 +15,10 @@ import InterviewPre from "./pages/InterviewPre";
 import Analysis from "./pages/Analysis";
 import JobRecommend from "./pages/JobRecommend";
 import AddPost from "./pages/AddPost";
+import CommpanySignup from "./pages/CommpanySignup";
+import LevelTest from "./pages/LevelTest";
+import Library from "./pages/Library";
+import CodingTest from "./pages/CodingTest";
 
 function App() {
   return (
@@ -34,6 +38,10 @@ function App() {
         <Route path="/Analysis" element={<Analysis />} />
         <Route path="/JobRecommend" element={<JobRecommend />} />
         <Route path="/AddPost" element={<AddPost />} />
+        <Route path="/CommpanySignup" element={<CommpanySignup />} />
+        <Route path="/LevelTest" element={<LevelTest />} />
+        <Route path="Library" element={<Library />} />
+        <Route path="CodingTest" element={<CodingTest />} />
       </Routes>
     </>
   );

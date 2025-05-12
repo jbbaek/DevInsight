@@ -1,8 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../css/Navbar.css"; // 스타일링을 위한 CSS 파일
 
 function Navbar() {
+  const location = useLocation();
+  const hiddenPaths = ["/login", "/signup", "/CommpanySignup"]; // 네비게이션을 숨길 경로
+
+  // 현재 경로가 숨김 대상이면 null 반환
+  if (hiddenPaths.includes(location.pathname)) {
+    return null;
+  }
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -22,7 +30,10 @@ function Navbar() {
           <Link to="/Jobrecommend">직무 추천</Link>
         </li>
         <li>
-          <Link to="/survey">설문조사</Link>
+          <Link to="/LevelTest">DTL</Link>
+        </li>
+        <li>
+          <Link to="/Library">기술도감</Link>
         </li>
         <li>
           <Link to="/community">커뮤니티 (Q&A)</Link>
