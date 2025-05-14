@@ -1,57 +1,120 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
 const cors = require("cors");
-
+const mysql = require("mysql2/promise"); // Use promise-based mysql2 for async/await
 const app = express();
-app.use(cors()); // React와 통신을 위해 CORS 설정
-app.use(express.json()); // JSON 데이터 파싱
+const port = 5000;
 
-// MySQL 연결 설정
-const pool = mysql.createPool({
+app.use(cors());
+app.use(express.json());
+
+// MySQL connection configuration
+const dbConfig = {
   host: "localhost",
-  user: "root",
-  password: "your_password", // MySQL 비밀번호로 교체
-  database: "quiz_db",
-});
+  user: "manager",
+  password: "1234",
+  database: "devinsight",
+};
 
-// 서버 시작
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
-});
+// Create a MySQL connection pool
+const pool = mysql.createPool(dbConfig);
 
-// API 엔드포인트: 질문 조회
-app.get("/api/questions", async (req, res) => {
+// Connect to MySQL and log status
+async function connectDB() {
   try {
-    const [rows] = await pool.query("SELECT * FROM 문항 LIMIT 10");
-    res.json(rows);
-  } catch (error) {
-    res.status(500).send("Error fetching questions");
+    const connection = await pool.getConnection();
+    console.log("MySQL 연결 성공");
+    connection.release();
+  } catch (err) {
+    console.error("DB 연결 실패:", err);
+    process.exit(1);
+  }
+}
+connectDB();
+
+// Endpoint to fetch a question by ID
+app.get("/question/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [results] = await pool.query(
+      `SELECT m.문항id, m.문항내용, m.1번, m.2번, m.3번, m.4번, t.문제유형, t.난이도
+       FROM 문항 m
+       JOIN 문항유형 t ON m.문항유형id = t.문항유형id
+       WHERE m.문항id = ?`,
+      [id]
+    );
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "문항을 찾을 수 없습니다." });
+    }
+
+    const question = {
+      id: results[0].문항id,
+      content: results[0].문항내용,
+      options: [
+        results[0]["1번"],
+        results[0]["2번"],
+        results[0]["3번"],
+        results[0]["4번"],
+      ],
+      type: results[0].문제유형,
+      difficulty: results[0].난이도,
+    };
+
+    return res.json(question);
+  } catch (err) {
+    console.error("쿼리 오류:", err);
+    return res.status(500).json({ message: "서버 오류" });
   }
 });
 
-// API 엔드포인트: 답변 제출 및 점수 저장
-app.post("/api/submit-answer", async (req, res) => {
-  const { 문항id, 사용자응답id, 사용자답변 } = req.body;
-  try {
-    const [문항] = await pool.query("SELECT 정답 FROM 문항 WHERE 문항id = ?", [
-      문항id,
-    ]);
-    const isCorrect = 문항[0].정답 === parseInt(사용자답변);
+// Endpoint to check the user's answer
+app.post("/check-answer", async (req, res) => {
+  const { questionId, userAnswer } = req.body;
 
-    const 문항응답id = `R${Date.now()}`;
-    await pool.query(
-      "INSERT INTO 문항응답 (문항응답id, 문항id, 사용자응답id, 사용자답변) VALUES (?, ?, ?, ?)",
-      [문항응답id, 문항id, 사용자응답id, `Bronze(${사용자답변})`]
-    );
-
-    const 문항점수id = `S${Date.now()}`;
-    await pool.query(
-      "INSERT INTO 문항점수 (문항점수id, 문항응답id, 문항id, 점수) VALUES (?, ?, ?, ?)",
-      [문항점수id, 문항응답id, 문항id, isCorrect ? 10 : 0]
-    );
-
-    res.json({ success: true, score: isCorrect ? 10 : 0, isCorrect });
-  } catch (error) {
-    res.status(500).send("Error submitting answer");
+  // Validate input
+  if (!questionId || !userAnswer || isNaN(parseInt(userAnswer))) {
+    return res.status(400).json({ message: "잘못된 요청입니다." });
   }
+
+  try {
+    const [results] = await pool.query(
+      "SELECT 정답 FROM 문항 WHERE 문항id = ?",
+      [questionId]
+    );
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "문항을 찾을 수 없습니다." });
+    }
+
+    const correctAnswer = results[0].정답;
+    const isCorrect = parseInt(userAnswer) === correctAnswer;
+
+    return res.json({
+      isCorrect,
+      correctAnswer,
+      message: isCorrect ? "정답입니다!" : "오답입니다.",
+    });
+  } catch (err) {
+    console.error("쿼리 오류:", err);
+    return res.status(500).json({ message: "서버 오류" });
+  }
+});
+
+// Endpoint to fetch all question IDs (for navigation)
+app.get("/questions", async (req, res) => {
+  try {
+    const [results] = await pool.query(
+      "SELECT 문항id FROM 문항 ORDER BY 문항id"
+    );
+    const questionIds = results.map((row) => row.문항id);
+    return res.json(questionIds);
+  } catch (err) {
+    console.error("쿼리 오류:", err);
+    return res.status(500).json({ message: "서버 오류" });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`서버 실행 중: http://localhost:${port}`);
 });
