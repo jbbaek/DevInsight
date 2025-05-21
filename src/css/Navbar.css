@@ -1,10 +1,12 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff9e6; /* 이미지에서 보이는 연한 노란색 배경 */
+  background-color: #fff9e6;
   padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* 고정하지 않음 */
+  z-index: 10;
 }
 
 .navbar-logo {

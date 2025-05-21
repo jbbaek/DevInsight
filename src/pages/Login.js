@@ -1,15 +1,47 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // 페이지 이동용
 import "../css/Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = () => {
-    console.log("로그인 시도:", { email, password, rememberMe });
-    alert("로그인 기능은 아직 백엔드와 연결되지 않았습니다.");
+  const navigate = useNavigate(); // 페이지 이동 함수
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          회원id: userId,
+          비밀번호: password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("✅ 로그인 성공!");
+
+        // localStorage 또는 sessionStorage에 로그인 정보 저장
+        const userData = result.user;
+        if (rememberMe) {
+          localStorage.setItem("user", JSON.stringify(userData));
+        } else {
+          sessionStorage.setItem("user", JSON.stringify(userData));
+        }
+
+        // 로그인 후 페이지 이동
+        navigate("/main"); // 👉 원하는 경로로 변경 가능
+      } else {
+        alert(`❌ 로그인 실패: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("로그인 요청 실패:", error);
+      alert("🚫 서버와 연결되지 않았습니다.");
+    }
   };
 
   return (
@@ -23,8 +55,8 @@ const Login = () => {
           <input
             type="text"
             placeholder="아이디"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
           />
         </div>
 

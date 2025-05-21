@@ -22,7 +22,7 @@ const Analysis = () => {
   const [overallDevTypeCount, setOverallDevTypeCount] = useState([]);
 
   useEffect(() => {
-    fetch("/시각화요소_전처리.csv")
+    fetch("/dev_data.csv")
       .then((res) => {
         if (!res.ok) throw new Error("CSV 파일을 가져오지 못했습니다");
         return res.text();

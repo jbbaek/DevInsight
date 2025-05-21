@@ -19,6 +19,7 @@ import CommpanySignup from "./pages/CommpanySignup";
 import LevelTest from "./pages/LevelTest";
 import Library from "./pages/Library";
 import CodingTest from "./pages/CodingTest";
+import QuestionPage from "./pages/QuestionPage";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/AddPost" element={<AddPost />} />
         <Route path="/CommpanySignup" element={<CommpanySignup />} />
         <Route path="/LevelTest" element={<LevelTest />} />
+        <Route path="/question/:id" element={<QuestionPage />} />
         <Route path="Library" element={<Library />} />
         <Route path="CodingTest" element={<CodingTest />} />
       </Routes>

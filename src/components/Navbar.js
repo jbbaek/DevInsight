@@ -1,12 +1,28 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import "../css/Navbar.css"; // 스타일링을 위한 CSS 파일
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "../css/Navbar.css";
 
 function Navbar() {
   const location = useLocation();
-  const hiddenPaths = ["/login", "/signup", "/CommpanySignup"]; // 네비게이션을 숨길 경로
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 현재 경로가 숨김 대상이면 null 반환
+  // 로그인 상태 감지
+  useEffect(() => {
+    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
+    setIsLoggedIn(!!user);
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
+    setIsLoggedIn(false);
+    alert("로그아웃 되었습니다.");
+    navigate("/login");
+  };
+
+  // 로그인/회원가입 페이지에서는 네비게이션 숨김
+  const hiddenPaths = ["/login", "/signup", "/CommpanySignup"];
   if (hiddenPaths.includes(location.pathname)) {
     return null;
   }
@@ -30,7 +46,7 @@ function Navbar() {
           <Link to="/Jobrecommend">직무 추천</Link>
         </li>
         <li>
-          <Link to="/LevelTest">DTL</Link>
+          <Link to="/LevelTest">DLT</Link>
         </li>
         <li>
           <Link to="/Library">기술도감</Link>
@@ -38,12 +54,33 @@ function Navbar() {
         <li>
           <Link to="/community">커뮤니티 (Q&A)</Link>
         </li>
-        <li>
-          <Link to="/mypage">마이페이지</Link>
-        </li>
-        <li>
-          <Link to="/login">로그인/회원가입</Link>
-        </li>
+
+        {isLoggedIn ? (
+          <>
+            <li>
+              <Link to="/mypage">마이페이지</Link>
+            </li>
+            <li>
+              <button
+                onClick={handleLogout}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "blue",
+                  cursor: "pointer",
+                  padding: 0,
+                  textDecoration: "underline",
+                }}
+              >
+                로그아웃
+              </button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link to="/login">로그인/회원가입</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

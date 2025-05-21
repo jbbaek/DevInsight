@@ -18,12 +18,6 @@ const MyPage = () => {
           }}
         >
           <p
-            onClick={() => setSelectedContent("입사지원현황 내용입니다.")}
-            style={styles.menuItem}
-          >
-            입사지원현황
-          </p>
-          <p
             onClick={() =>
               setSelectedContent("이력서&포트폴리오 등록 페이지입니다.")
             }
