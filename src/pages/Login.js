@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // 페이지 이동용
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Login.css";
 
 const Login = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const navigate = useNavigate(); // 페이지 이동 함수
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
+    // ✅ 1. 입력 유효성 검사
+    if (!userId || !password) {
+      alert("아이디와 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/login", {
         method: "POST",
@@ -20,21 +24,24 @@ const Login = () => {
         }),
       });
 
-      const result = await response.json();
+      // ✅ 2. 서버 응답 JSON 파싱 (예외 처리)
+      let result;
+      try {
+        result = await response.json();
+      } catch (err) {
+        alert("서버 응답이 올바르지 않습니다.");
+        return;
+      }
 
+      // ✅ 3. 로그인 성공 처리
       if (response.ok) {
         alert("✅ 로그인 성공!");
 
-        // localStorage 또는 sessionStorage에 로그인 정보 저장
-        const userData = result.user;
-        if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(userData));
-        } else {
-          sessionStorage.setItem("user", JSON.stringify(userData));
-        }
+        // sessionStorage에 회원id 저장
+        sessionStorage.setItem("회원id", result.user.회원id);
 
-        // 로그인 후 페이지 이동
-        navigate("/main"); // 👉 원하는 경로로 변경 가능
+        // 메인 페이지로 이동
+        navigate("/");
       } else {
         alert(`❌ 로그인 실패: ${result.message}`);
       }
@@ -74,21 +81,6 @@ const Login = () => {
           <button className="login-btn" onClick={handleLogin}>
             로그인
           </button>
-          <button className="kakao-btn">카카오로 가입하기</button>
-        </div>
-
-        <div className="options">
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-            />
-            로그인 상태 유지
-          </label>
-          <Link to="/find-password" className="find-password">
-            비밀번호 찾기
-          </Link>
         </div>
 
         <hr />

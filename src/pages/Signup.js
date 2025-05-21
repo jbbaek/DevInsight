@@ -137,9 +137,6 @@ const Signup = () => {
             <button type="submit" className="signup-btn">
               회원가입
             </button>
-            <button type="button" className="kakao-btn">
-              카카오로 가입하기
-            </button>
           </div>
         </form>
         <div className="signup-footer">

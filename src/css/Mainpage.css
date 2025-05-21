@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  font-family: "Pretendard", sans-serif;
+}
+
+.main-container {
+  width: 100%;
+  background-color: #f5f5f5;
+}
+.main-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.main-icons ul {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.main-icons ul p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  width: 100px;
+  transition: transform 0.2s;
+}
+
+.main-icons ul p:hover {
+  transform: scale(1.05);
+}
+
+.main-icons ul p a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.main-icons ul p svg {
+  font-size: 48px;
+  margin-bottom: 8px;
+  color: #6c9cd3;
+}
+
+/* 설문조사 버튼 영역 */
+.survey-section {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 30px;
+}
+
+.survey-button {
+  background-color: #e89b97;
+  color: black;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  transition: all 0.2s ease;
+}
+
+.survey-button:hover {
+  background-color: #d8817b;
+  transform: translateY(-2px);
+}

@@ -9,8 +9,9 @@ function Navbar() {
 
   // 로그인 상태 감지
   useEffect(() => {
-    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
-    setIsLoggedIn(!!user);
+    const userId =
+      sessionStorage.getItem("회원id") || localStorage.getItem("회원id");
+    setIsLoggedIn(!!userId);
   }, [location]);
 
   const handleLogout = () => {

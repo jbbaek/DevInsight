@@ -4,9 +4,11 @@ import "../css/CodingTest.css";
 
 const CodingTest = () => {
   const [problems, setProblems] = useState([]);
+  const [filteredProblems, setFilteredProblems] = useState([]);
   const [selectedProblem, setSelectedProblem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState("");
 
   const escapeHtml = (unsafe) => {
     if (typeof unsafe !== "string") return "";
@@ -45,6 +47,7 @@ const CodingTest = () => {
               힌트: row["힌트"] || "",
             }));
             setProblems(cleanedData);
+            setFilteredProblems(cleanedData);
             setIsLoading(false);
           },
           error: (err) => {
@@ -61,6 +64,19 @@ const CodingTest = () => {
       });
   }, []);
 
+  const handleLevelChange = (e) => {
+    const level = e.target.value;
+    setSelectedLevel(level);
+    if (level === "") {
+      setFilteredProblems(problems);
+    } else {
+      const filtered = problems.filter((problem) =>
+        problem.등급.includes(level)
+      );
+      setFilteredProblems(filtered);
+    }
+  };
+
   const handleProblemClick = (problem) => {
     setSelectedProblem(problem);
   };
@@ -70,7 +86,7 @@ const CodingTest = () => {
   };
 
   const handleDragStart = (e, problem) => {
-    e.dataTransfer.setData("text/plain", problem["제목"]); // 문제 번호 대신 제목 사용
+    e.dataTransfer.setData("text/plain", problem["제목"]);
     e.target.classList.add("dragging");
   };
 
@@ -79,52 +95,63 @@ const CodingTest = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="loading-container">
-        <p className="loading-text">문제를 불러오는 중...</p>
-      </div>
-    );
+    return <div className="loading-container">문제를 불러오는 중...</div>;
   }
 
   if (error) {
-    return (
-      <div className="error-container">
-        <p className="error-text">{error}</p>
-      </div>
-    );
+    return <div className="error-container">{error}</div>;
   }
 
-  const renderProblemList = () => (
-    <div className="problem-list-container">
-      <h1 className="problem-list-title">코딩 테스트</h1>
-      {problems.length === 0 ? (
-        <p className="no-problems-text">문제가 없습니다.</p>
-      ) : (
-        <table className="problem-table">
-          <thead>
-            <tr>
-              <th>등급</th>
-              <th>제목</th>
-            </tr>
-          </thead>
-          <tbody>
-            {problems.map((problem) => (
-              <tr
-                key={problem["제목"]}
-                draggable="true"
-                onDragStart={(e) => handleDragStart(e, problem)}
-                onDragEnd={handleDragEnd}
-                onClick={() => handleProblemClick(problem)}
-              >
-                <td>{escapeHtml(problem["등급"])}</td>
-                <td>{escapeHtml(problem["제목"])}</td>
+  const renderProblemList = () => {
+    const levels = [...new Set(problems.map((p) => p.등급))].sort();
+
+    return (
+      <div className="problem-list-container">
+        <h1 className="problem-list-title">코딩 테스트</h1>
+
+        <div className="filter-bar">
+          <label>
+            등급 필터:
+            <select value={selectedLevel} onChange={handleLevelChange}>
+              <option value="">전체</option>
+              {levels.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        {filteredProblems.length === 0 ? (
+          <p className="no-problems-text">해당 등급의 문제가 없습니다.</p>
+        ) : (
+          <table className="problem-table">
+            <thead>
+              <tr>
+                <th>등급</th>
+                <th>제목</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
+            </thead>
+            <tbody>
+              {filteredProblems.map((problem) => (
+                <tr
+                  key={problem["제목"]}
+                  draggable="true"
+                  onDragStart={(e) => handleDragStart(e, problem)}
+                  onDragEnd={handleDragEnd}
+                  onClick={() => handleProblemClick(problem)}
+                >
+                  <td>{escapeHtml(problem["등급"])}</td>
+                  <td>{escapeHtml(problem["제목"])}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    );
+  };
 
   const renderProblemDetail = () => (
     <div className="problem-detail-container">

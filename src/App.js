@@ -20,6 +20,8 @@ import LevelTest from "./pages/LevelTest";
 import Library from "./pages/Library";
 import CodingTest from "./pages/CodingTest";
 import QuestionPage from "./pages/QuestionPage";
+import JobPostingDetail from "./pages/JobPostingDetail";
+import CompanyDetail from "./pages/CompanyDetail";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/community" element={<Community />} />
         <Route path="/jobPosting" element={<JobPosting />} />
+        <Route path="/jobPosting/:id" element={<JobPostingDetail />} />
+        <Route path="/Company/:id" element={<CompanyDetail />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/mypage" element={<MyPage />} />

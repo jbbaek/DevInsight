@@ -1,0 +1,25 @@
+.job-posting-container {
+  padding: 24px;
+  background-color: #fafafa;
+  font-family: "Pretendard", sans-serif;
+}
+
+.filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.filters select {
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-width: 200px;
+}

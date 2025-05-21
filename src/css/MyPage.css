@@ -1,0 +1,59 @@
+/* src/css/MyPage.css */
+
+.mypage-container {
+  padding: 30px;
+  font-family: "Pretendard", sans-serif;
+}
+
+.mypage-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.mypage-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.mypage-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.mypage-sidebar {
+  width: 200px;
+  border-right: 2px solid #ddd;
+  padding-right: 20px;
+}
+
+.mypage-sidebar p {
+  cursor: pointer;
+  padding: 5px 0;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.mypage-content {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.user-info {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f4f7fa;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.content-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.loading {
+  padding: 30px;
+  font-size: 1.2rem;
+  color: #888;
+}

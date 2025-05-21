@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import "../css/JobRecommend.css"; // 스타일링을 위한 CSS 파일
+import { useNavigate } from "react-router-dom";
+import "../css/JobRecommend.css"; // CSS 파일 연결
 
 const JobRecommend = () => {
+  const navigate = useNavigate();
+  const [showTest, setShowTest] = useState(false); // 버튼 → 설문 전환
+
   const questionList = [
     "어떤 서비스를 사용할 때 ‘이건 왜 이렇게 만들었을까?’라는 생각을 자주 하나요?",
     "현실의 공간을 디지털로 구현하는 것에 관심이 많나요?",
@@ -54,49 +58,74 @@ const JobRecommend = () => {
     alert("설문이 제출되었습니다! 콘솔에서 결과를 확인하세요.");
   };
 
+  const handleStartTest = () => {
+    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
+    if (!user) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    } else {
+      setShowTest(true);
+    }
+  };
+
   return (
     <div className="JobRecommend-container">
-      <h1>개발자 직무 성향 테스트</h1>
-      <p>각 문항에 대해 5단계(그렇다 ~ 그렇지 않다)로 선택해주세요.</p>
-      <div className="JobRecommend">
-        {questionList.map((question, index) => (
-          <div key={index} className="question-block">
-            <p>
-              {index + 1}. {question}
-            </p>
-            <div className="options multi-level-options">
-              {multiLevelOptions.map((option, optIndex) => (
-                <label key={optIndex} className="option-label">
-                  <input
-                    type="radio"
-                    name={`question-${index}`}
-                    value={option.value}
-                    checked={responses[index] === option.value}
-                    onChange={() => handleChange(index, option.value)}
-                  />
-                  <span
-                    className={`circle ${
-                      optIndex === 0
-                        ? "green"
-                        : optIndex === 4
-                        ? "purple"
-                        : optIndex === 2
-                        ? "gray"
-                        : ""
-                    }`}
-                  ></span>
-                  {option.label && (
-                    <span className="label-text">{option.label}</span>
-                  )}
-                </label>
-              ))}
-            </div>
+      {!showTest ? (
+        <>
+          <h1>개발자 직무 성향 테스트</h1>
+          <p>
+            당신에게 맞는 직무를 추천해드려요 아래 버튼을 눌러 설문을
+            시작하세요.
+          </p>
+          <button onClick={handleStartTest} className="start-test-button">
+            직무 추천 받기
+          </button>
+        </>
+      ) : (
+        <>
+          <h1>개발자 직무 성향 테스트</h1>
+          <p>각 문항에 대해 5단계(그렇다 ~ 그렇지 않다)로 선택해주세요.</p>
+          <div className="JobRecommend">
+            {questionList.map((question, index) => (
+              <div key={index} className="question-block">
+                <p>
+                  {index + 1}. {question}
+                </p>
+                <div className="options multi-level-options">
+                  {multiLevelOptions.map((option, optIndex) => (
+                    <label key={optIndex} className="option-label">
+                      <input
+                        type="radio"
+                        name={`question-${index}`}
+                        value={option.value}
+                        checked={responses[index] === option.value}
+                        onChange={() => handleChange(index, option.value)}
+                      />
+                      <span
+                        className={`circle ${
+                          optIndex === 0
+                            ? "green"
+                            : optIndex === 4
+                            ? "purple"
+                            : optIndex === 2
+                            ? "gray"
+                            : ""
+                        }`}
+                      ></span>
+                      {option.label && (
+                        <span className="label-text">{option.label}</span>
+                      )}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <button onClick={handleSubmit} className="submit-button">
-        설문 제출
-      </button>
+          <button onClick={handleSubmit} className="submit-button">
+            결과 제출
+          </button>
+        </>
+      )}
     </div>
   );
 };

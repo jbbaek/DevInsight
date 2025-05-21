@@ -1,3 +1,18 @@
+.start-test-button {
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  background-color: #fff9e6;
+  color: black;
+  border: 1px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 16px;
+}
+
+.start-test-button:hover {
+  background-color: #f0f0f0;
+}
 .JobRecommend-container {
   max-width: 800px;
   margin: 0 auto;

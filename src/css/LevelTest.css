@@ -4,7 +4,20 @@
   padding: 20px;
   font-family: Arial, sans-serif;
 }
+.dropdown-filters {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
+.dropdown-filters select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
 h1,
 h2 {
   text-align: center;
@@ -62,4 +75,29 @@ h2 {
   font-size: 18px;
   color: #d32f2f;
   margin: 20px 0;
+}
+
+.coding-test-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #4b84e4;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.coding-test-link:hover {
+  background-color: #3a6fcc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.coding-test-link:active {
+  background-color: #335fb3;
+  transform: scale(0.98);
 }
