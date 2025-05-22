@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../css/QuestionPage.css";
 
-function QuestionPage() {
-  const { id } = useParams();
+function QuestionPage({ id, setSelectedTechId, setSelectedQuestionId }) {
   const [question, setQuestion] = useState(null);
   const [selected, setSelected] = useState(null);
-  const [feedback, setFeedback] = useState(""); // ✅ 정답 피드백 상태
+  const [feedback, setFeedback] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/question/${id}`).then((res) => {
@@ -16,12 +15,29 @@ function QuestionPage() {
   }, [id]);
 
   const handleSelect = (selectedNumber) => {
-    setSelected(selectedNumber);
+    if (!submitted) setSelected(selectedNumber);
+  };
 
-    if (!question) return;
+  const handleSubmit = () => {
+    const userId =
+      JSON.parse(localStorage.getItem("user"))?.회원id ||
+      sessionStorage.getItem("회원id");
 
-    const isCorrect = question.answer === selectedNumber;
+    if (!userId) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
+    if (selected === null) {
+      alert("답안을 선택해주세요.");
+      return;
+    }
+
+    const isCorrect = question.answer === selected;
     setFeedback(isCorrect ? "정답입니다!" : "오답입니다.");
+    setSubmitted(true);
+
+    const 회원기술도감id = `HT_${userId}_${question.기술도감id}`;
 
     const payload = {
       문항id: question.id,
@@ -29,8 +45,8 @@ function QuestionPage() {
       기술도감id: question.기술도감id,
       직군id: question.직군id,
       분야id: question.분야id,
-      회원id: JSON.parse(localStorage.getItem("user"))?.회원id,
-      회원기술도감id: "HT1234",
+      회원id: userId,
+      회원기술도감id,
       정답여부: isCorrect ? "1" : "0",
     };
 
@@ -39,33 +55,54 @@ function QuestionPage() {
     });
   };
 
+  const handleBack = () => {
+    setSelectedQuestionId(null); // 문항 목록으로 돌아감
+  };
+
   if (!question) return <div className="loading">문제를 불러오는 중...</div>;
 
   return (
-    <div className="question-container">
-      <h2 className="question-title">문항</h2>
-      <p className="question-content">{question.content}</p>
-      <ul className="options-list">
-        {question.options.map((opt, idx) => {
-          const number = idx + 1;
-          return (
-            <li
-              key={idx}
-              className={`option-item ${
-                selected === number
-                  ? question.answer === number
-                    ? "correct"
-                    : "incorrect"
-                  : ""
-              }`}
-              onClick={() => handleSelect(number)}
-            >
-              {`${number}번: ${opt}`}
-            </li>
-          );
-        })}
-      </ul>
-      <p className="feedback">{feedback}</p>
+    <div>
+      <button className="submit-button" onClick={handleBack}>
+        ← 돌아가기
+      </button>
+      <div className="question-container">
+        <h2 className="question-title">문항</h2>
+
+        <p className="question-content">{question.content}</p>
+        <ul className="options-list">
+          {question.options.map((opt, idx) => {
+            const number = idx + 1;
+            const className = submitted
+              ? number === question.answer
+                ? "option-item correct"
+                : selected === number
+                ? "option-item incorrect"
+                : "option-item"
+              : selected === number
+              ? "option-item selected"
+              : "option-item";
+
+            return (
+              <li
+                key={idx}
+                className={className}
+                onClick={() => handleSelect(number)}
+              >
+                {`${number}번: ${opt}`}
+              </li>
+            );
+          })}
+        </ul>
+
+        <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
+          <button className="submit-button" onClick={handleSubmit}>
+            제출하기
+          </button>
+        </div>
+
+        <p className="feedback">{feedback}</p>
+      </div>
     </div>
   );
 }

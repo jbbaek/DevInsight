@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import QuestionPage from "./QuestionPage"; // 경로는 맞게 조정해줘
 import "../css/LevelTest.css";
 
 function LevelTest() {
@@ -8,12 +9,12 @@ function LevelTest() {
   const [filteredTechnologies, setFilteredTechnologies] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [selectedTechId, setSelectedTechId] = useState(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedFramework, setSelectedFramework] = useState("");
   const [selectedLibrary, setSelectedLibrary] = useState("");
-  const navigate = useNavigate();
 
   // 기술도감 불러오기
   useEffect(() => {
@@ -45,7 +46,7 @@ function LevelTest() {
     setFilteredTechnologies(filtered);
   }, [selectedLanguage, selectedFramework, selectedLibrary, technologies]);
 
-  // 드롭다운 필터 옵션 계산
+  // 드롭다운 필터 옵션
   const getFilteredValues = (key) => {
     return [
       ...new Set(
@@ -77,9 +78,9 @@ function LevelTest() {
     ];
   };
 
-  // 기술 클릭 → 문항 요청
   const handleTechClick = async (techId) => {
     setSelectedTechId(techId);
+    setSelectedQuestionId(null);
     setLoading(true);
     setError(null);
     try {
@@ -92,9 +93,8 @@ function LevelTest() {
     }
   };
 
-  // 문항 클릭 → 상세 페이지로 이동
   const handleQuestionClick = (questionId) => {
-    navigate(`/question/${questionId}`);
+    setSelectedQuestionId(questionId);
   };
 
   if (loading) return <div className="loading">로딩 중...</div>;
@@ -102,7 +102,38 @@ function LevelTest() {
 
   return (
     <div className="level-test-container">
-      {!selectedTechId ? (
+      {selectedTechId && selectedQuestionId ? (
+        <QuestionPage
+          id={selectedQuestionId}
+          setSelectedTechId={setSelectedTechId}
+          setSelectedQuestionId={setSelectedQuestionId}
+        />
+      ) : selectedTechId ? (
+        <>
+          <button onClick={() => setSelectedTechId(null)}>← 돌아가기</button>
+          {questions.length === 0 ? (
+            <p>해당 기술에 연결된 문항이 없습니다.</p>
+          ) : (
+            <table className="questions-table">
+              <thead>
+                <tr>
+                  <th>문항 내용</th>
+                </tr>
+              </thead>
+              <tbody>
+                {questions.map((q) => (
+                  <tr
+                    key={q.문항id}
+                    onClick={() => handleQuestionClick(q.문항id)}
+                  >
+                    <td>{q.문항내용}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </>
+      ) : (
         <>
           <h1>DLT</h1>
           <Link to="/CodingTest" className="coding-test-link">
@@ -172,31 +203,6 @@ function LevelTest() {
               ))}
             </tbody>
           </table>
-        </>
-      ) : (
-        <>
-          <button onClick={() => setSelectedTechId(null)}>← 돌아가기</button>
-          {questions.length === 0 ? (
-            <p>해당 기술에 연결된 문항이 없습니다.</p>
-          ) : (
-            <table className="questions-table">
-              <thead>
-                <tr>
-                  <th>문항 내용</th>
-                </tr>
-              </thead>
-              <tbody>
-                {questions.map((q) => (
-                  <tr
-                    key={q.문항id}
-                    onClick={() => handleQuestionClick(q.문항id)}
-                  >
-                    <td>{q.문항내용}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
         </>
       )}
     </div>

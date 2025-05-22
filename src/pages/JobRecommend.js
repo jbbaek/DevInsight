@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/JobRecommend.css"; // CSS 파일 연결
+import "../css/JobRecommend.css";
 
 const JobRecommend = () => {
   const navigate = useNavigate();
-  const [showTest, setShowTest] = useState(false); // 버튼 → 설문 전환
+  const [showTest, setShowTest] = useState(false);
+  const [responses, setResponses] = useState({});
 
   const questionList = [
     "어떤 서비스를 사용할 때 ‘이건 왜 이렇게 만들었을까?’라는 생각을 자주 하나요?",
@@ -47,8 +48,6 @@ const JobRecommend = () => {
     { label: "그렇지 않다", value: 1 },
   ];
 
-  const [responses, setResponses] = useState({});
-
   const handleChange = (index, value) => {
     setResponses({ ...responses, [index]: value });
   };
@@ -59,8 +58,9 @@ const JobRecommend = () => {
   };
 
   const handleStartTest = () => {
-    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
-    if (!user) {
+    const userId =
+      localStorage.getItem("회원id") || sessionStorage.getItem("회원id");
+    if (!userId) {
       alert("로그인이 필요합니다.");
       navigate("/login");
     } else {
@@ -74,7 +74,7 @@ const JobRecommend = () => {
         <>
           <h1>개발자 직무 성향 테스트</h1>
           <p>
-            당신에게 맞는 직무를 추천해드려요 아래 버튼을 눌러 설문을
+            당신에게 맞는 직무를 추천해드려요. 아래 버튼을 눌러 설문을
             시작하세요.
           </p>
           <button onClick={handleStartTest} className="start-test-button">

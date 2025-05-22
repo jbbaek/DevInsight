@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../css/JobPosting.css";
 
 const JobPosting = () => {
@@ -10,6 +11,9 @@ const JobPosting = () => {
   const [selectedDeadline, setSelectedDeadline] = useState("");
   const [selectedCareer, setSelectedCareer] = useState("");
   const [selectedEducation, setSelectedEducation] = useState("");
+  const [deadlineOptions, setDeadlineOptions] = useState([]);
+
+  const navigate = useNavigate();
 
   const careerOptions = [
     { label: "전체", value: "" },
@@ -21,7 +25,6 @@ const JobPosting = () => {
   ];
 
   const educationOptions = ["전체", "고졸", "초대졸", "대졸", "석사", "박사"];
-  const [deadlineOptions, setDeadlineOptions] = useState([]);
 
   // 전체 채용공고 로딩
   useEffect(() => {
@@ -112,10 +115,26 @@ const JobPosting = () => {
     selectedEducation,
   ]);
 
-  // 필터가 변경될 때마다 필터 적용
   useEffect(() => {
     applyFilters();
   }, [applyFilters]);
+
+  // ✅ 공고 클릭 → 최근 본 기록 저장 + 상세페이지 이동
+  const handleJobClick = async (jobId) => {
+    const userId = sessionStorage.getItem("회원id");
+    if (!userId) return;
+
+    try {
+      await axios.post("http://localhost:5000/recent-job", {
+        회원id: userId,
+        공고id: jobId,
+      });
+    } catch (err) {
+      console.error("❌ 최근 본 공고 저장 실패:", err);
+    }
+
+    navigate(`/jobPosting/${jobId}`);
+  };
 
   return (
     <div className="job-posting-container">
@@ -199,7 +218,9 @@ const JobPosting = () => {
               <h3>{job.제목}</h3>
               <p>기업명: {job.기업명}</p>
               <p>마감일: {job.마감일}</p>
-              <Link to={`/jobPosting/${job.채용공고id}`}>자세히 보기</Link>
+              <button onClick={() => handleJobClick(job.채용공고id)}>
+                자세히 보기
+              </button>
             </div>
           ))}
         </div>
