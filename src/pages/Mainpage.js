@@ -81,13 +81,15 @@ const Mainpage = () => {
                   padding: "12px",
                   width: "300px",
                   borderRadius: "8px",
-                  backgroundColor: "#f9f9f9",
+                  backgroundColor: "#ffffff",
                 }}
               >
                 <h3>{job.title}</h3>
                 <p>기업명: {job.company}</p>
                 <p>마감일: {job.deadline}</p>
-                <Link to={`/jobPosting/${job.id}`}>자세히 보기</Link>
+                <div className="main-button">
+                  <Link to={`/jobPosting/${job.id}`}>자세히 보기</Link>
+                </div>
               </div>
             ))}
           </div>

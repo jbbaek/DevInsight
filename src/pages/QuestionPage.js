@@ -18,7 +18,7 @@ function QuestionPage({ id, setSelectedTechId, setSelectedQuestionId }) {
     if (!submitted) setSelected(selectedNumber);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const userId =
       JSON.parse(localStorage.getItem("user"))?.회원id ||
       sessionStorage.getItem("회원id");
@@ -39,24 +39,40 @@ function QuestionPage({ id, setSelectedTechId, setSelectedQuestionId }) {
 
     const 회원기술도감id = `HT_${userId}_${question.기술도감id}`;
 
-    const payload = {
-      문항id: question.id,
-      문항유형id: question.문항유형id,
-      기술도감id: question.기술도감id,
-      직군id: question.직군id,
-      분야id: question.분야id,
-      회원id: userId,
-      회원기술도감id,
-      정답여부: isCorrect ? "1" : "0",
-    };
+    try {
+      // ✅ 먼저 중복 채점 여부 확인
+      const checkRes = await axios.get("http://localhost:5000/check-answer", {
+        params: {
+          회원id: userId,
+          문항id: question.id,
+        },
+      });
 
-    axios.post("http://localhost:5000/submit-answer", payload).catch((err) => {
-      console.error("답안 저장 오류:", err);
-    });
+      if (checkRes.data.exists) {
+        console.log("❗ 이미 채점된 문항. 점수에는 반영되지 않음");
+        return;
+      }
+
+      // ✅ 점수 기록
+      const payload = {
+        문항id: question.id,
+        문항유형id: question.문항유형id,
+        기술도감id: question.기술도감id,
+        직군id: question.직군id,
+        분야id: question.분야id,
+        회원id: userId,
+        회원기술도감id,
+        정답여부: isCorrect ? "1" : "0",
+      };
+
+      await axios.post("http://localhost:5000/submit-answer", payload);
+    } catch (err) {
+      console.error("답안 처리 오류:", err);
+    }
   };
 
   const handleBack = () => {
-    setSelectedQuestionId(null); // 문항 목록으로 돌아감
+    setSelectedQuestionId(null);
   };
 
   if (!question) return <div className="loading">문제를 불러오는 중...</div>;
@@ -66,6 +82,7 @@ function QuestionPage({ id, setSelectedTechId, setSelectedQuestionId }) {
       <button className="submit-button" onClick={handleBack}>
         ← 돌아가기
       </button>
+
       <div className="question-container">
         <h2 className="question-title">문항</h2>
 

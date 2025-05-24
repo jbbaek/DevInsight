@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/JobRecommend.css";
+import structuredRoles from "../data/structured_roles.json"; // 꼭 이 경로에 structured_roles.json 파일을 넣어주세요
 
 const JobRecommend = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const JobRecommend = () => {
     "다양한 플랫폼(웹, 모바일 등)에 동시에 대응하는 앱 개발에 관심이 있나요?",
     "사람들이 사용하는 기능을 직접 기획하고 관리하는 것에 관심이 많나요?",
     "사람들이 더 편하게 쓸 수 있도록 화면 디자인을 조정하거나 애니메이션을 넣는 작업이 재미있게 느껴지나요?",
-    "정보를 안전하게 보호하거나 시스템을 외부 공격으로부터 방어하는 일에 흥미를 느끼나요?",
+    "정보를 안전하게 보호하거나 시스템을 외부 공격으로부터 방어하는 일에 흥미가 있나요?",
     "게임 시스템이나 캐릭터 능력치, 밸런스 등을 설계하는 데 관심이 있나요?",
     "주어진 데이터를 기반으로 예측 모델을 만들거나, AI가 스스로 학습하게 만드는 것에 흥미가 있나요?",
     "문제 상황에서 시스템의 원인을 분석하고 해결책을 찾는 것을 좋아하나요?",
@@ -52,9 +53,57 @@ const JobRecommend = () => {
     setResponses({ ...responses, [index]: value });
   };
 
-  const handleSubmit = () => {
-    console.log("직무 성향 설문 결과:", responses);
-    alert("설문이 제출되었습니다! 콘솔에서 결과를 확인하세요.");
+  // 🔵 서버에 맞게 결과 저장!
+  const handleSubmit = async () => {
+    // 분야별 점수 집계
+    const roleScores = {};
+
+    Object.entries(responses).forEach(([index, selectedValue]) => {
+      const question = structuredRoles[index];
+      if (!question) return;
+      const targetRoles =
+        selectedValue >= 3 ? question.a_roles : question.b_roles;
+      targetRoles.forEach((role) => {
+        roleScores[role] = (roleScores[role] || 0) + selectedValue;
+      });
+    });
+
+    // 분야별 점수 배열
+    const scores = Object.entries(roleScores).map(([분야id, 합계점수]) => ({
+      분야id,
+      분야이름: 분야id, // 필요하면 분야명 매핑 추가 가능
+      합계점수,
+    }));
+
+    // 상위 3개
+    const top3 = [...scores]
+      .sort((a, b) => b.합계점수 - a.합계점수)
+      .slice(0, 3);
+
+    const userId =
+      localStorage.getItem("회원id") || sessionStorage.getItem("회원id");
+    if (!userId) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      await fetch("http://localhost:5000/submit-result", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId,
+          scores,
+          top3,
+        }),
+      });
+
+      alert("결과가 성공적으로 저장되었습니다!");
+    } catch (err) {
+      console.error(err);
+      alert("서버 오류가 발생했습니다.");
+    }
   };
 
   const handleStartTest = () => {
