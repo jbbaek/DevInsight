@@ -8,12 +8,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // ✅ 1. 입력 유효성 검사
     if (!userId || !password) {
       alert("아이디와 비밀번호를 모두 입력해주세요.");
       return;
     }
-
     try {
       const response = await fetch("http://localhost:5000/login", {
         method: "POST",
@@ -23,34 +21,31 @@ const Login = () => {
           비밀번호: password,
         }),
       });
+      const result = await response.json();
 
-      // ✅ 2. 서버 응답 JSON 파싱 (예외 처리)
-      let result;
-      try {
-        result = await response.json();
-      } catch (err) {
-        alert("서버 응답이 올바르지 않습니다.");
-        return;
-      }
-
-      // ✅ 3. 로그인 성공 처리
       if (response.ok) {
+        if (result.type === "company") {
+          sessionStorage.setItem("type", "company");
+          sessionStorage.setItem("기업id", result.user.기업id);
+          sessionStorage.setItem("기업명", result.user.기업명);
+          sessionStorage.removeItem("회원id");
+          navigate("/companymain");
+        } else {
+          sessionStorage.setItem("type", "user");
+          sessionStorage.setItem("회원id", result.user.회원id);
+          sessionStorage.setItem("이름", result.user.이름);
+          sessionStorage.removeItem("기업id");
+          sessionStorage.removeItem("기업명");
+          navigate("/");
+        }
         alert("✅ 로그인 성공!");
-
-        // sessionStorage에 회원id 저장
-        sessionStorage.setItem("회원id", result.user.회원id);
-
-        // 메인 페이지로 이동
-        navigate("/");
       } else {
         alert(`❌ 로그인 실패: ${result.message}`);
       }
     } catch (error) {
-      console.error("로그인 요청 실패:", error);
       alert("🚫 서버와 연결되지 않았습니다.");
     }
   };
-
   return (
     <div className="login-container">
       <div className="login-box">

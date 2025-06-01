@@ -1,0 +1,72 @@
+.addpost-container {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 32px 24px;
+}
+
+.addpost-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: black; /* 진한 노랑/황금 계열 */
+  text-align: center;
+}
+
+.addpost-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addpost-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.addpost-row label {
+  flex: 0 0 110px;
+  font-weight: 500;
+  color: #8a8500;
+}
+
+.addpost-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #e6d300;
+  border-radius: 7px;
+  font-size: 15px;
+  background: #fff; /* 입력창 배경은 하얀색 */
+}
+
+.addpost-check-btn {
+  background: #fff9e6;
+  color: black;
+  border: 1px solid #e6d300;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.addpost-check-btn:hover {
+  background: #e6d300;
+  color: #fff;
+}
+
+.addpost-submit-btn {
+  width: 100%;
+  margin-top: 18px;
+  background-color: #fff9e6;
+  color: #8a8500;
+  padding: 16px 0;
+  border: 1px solid #e6d300;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(230, 211, 0, 0.1);
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}

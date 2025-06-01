@@ -192,6 +192,44 @@ const MyPage = () => {
             )
           ) : selectedContent === "내 결과보기" && allGradeInfo ? (
             <div>
+              <h4 className="grad-standard">등급 기준표</h4>
+              <table
+                className="grade-standard-table"
+                style={{ marginBottom: "16px" }}
+              >
+                <thead>
+                  <tr>
+                    <th>점수</th>
+                    <th>등급</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>90 이상</td>
+                    <td>Ruby</td>
+                  </tr>
+                  <tr>
+                    <td>75 이상 ~ 89</td>
+                    <td>Diamond</td>
+                  </tr>
+                  <tr>
+                    <td>60 이상 ~ 74</td>
+                    <td>Platinum</td>
+                  </tr>
+                  <tr>
+                    <td>45 이상 ~ 59</td>
+                    <td>Gold</td>
+                  </tr>
+                  <tr>
+                    <td>30 이상 ~ 44</td>
+                    <td>Silver</td>
+                  </tr>
+                  <tr>
+                    <td>~ 29</td>
+                    <td>Bronze</td>
+                  </tr>
+                </tbody>
+              </table>
               <h4>기술도감별 점수 및 등급</h4>
               <table className="grade-table">
                 <thead>

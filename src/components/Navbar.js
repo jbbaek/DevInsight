@@ -1,32 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import CompanyNavbar from "./CompanyNavbar";
 import "../css/Navbar.css";
 
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 로그인 상태 감지
+  const [userType, setUserType] = useState(
+    () => sessionStorage.getItem("type") || localStorage.getItem("type") || ""
+  );
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    () =>
+      !!(
+        sessionStorage.getItem("회원id") ||
+        sessionStorage.getItem("기업id") ||
+        localStorage.getItem("회원id") ||
+        localStorage.getItem("기업id")
+      )
+  );
+
   useEffect(() => {
-    const userId =
-      sessionStorage.getItem("회원id") || localStorage.getItem("회원id");
-    setIsLoggedIn(!!userId);
-  }, [location]);
+    const type =
+      sessionStorage.getItem("type") || localStorage.getItem("type") || "";
+    setUserType(type);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    sessionStorage.removeItem("user");
-    setIsLoggedIn(false);
-    alert("로그아웃 되었습니다.");
-    navigate("/login");
-  };
+    const userId =
+      sessionStorage.getItem("회원id") ||
+      sessionStorage.getItem("기업id") ||
+      localStorage.getItem("회원id") ||
+      localStorage.getItem("기업id");
+    setIsLoggedIn(!!userId);
+  }, [location.pathname]);
 
   // 로그인/회원가입 페이지에서는 네비게이션 숨김
-  const hiddenPaths = ["/login", "/signup", "/CommpanySignup"];
+  const hiddenPaths = ["/login", "/signup", "/CompanySignup"];
   if (hiddenPaths.includes(location.pathname)) {
     return null;
   }
+
+  // 기업회원이면 기업 네비게이션
+  if (userType === "company") {
+    return <CompanyNavbar />;
+  }
+
+  // 회원 네비게이션
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
+    localStorage.removeItem("회원id");
+    sessionStorage.removeItem("회원id");
+    localStorage.removeItem("기업id");
+    sessionStorage.removeItem("기업id");
+    localStorage.removeItem("type");
+    sessionStorage.removeItem("type");
+    setIsLoggedIn(false);
+    setUserType("");
+    alert("로그아웃 되었습니다.");
+    navigate("/login");
+  };
 
   return (
     <nav className="navbar">

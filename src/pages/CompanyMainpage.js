@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBuilding,
-  faRankingStar,
-  faCopy,
-  faClipboardList,
-  faQuestion,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBuilding } from "@fortawesome/free-solid-svg-icons";
 import "../css/Mainpage.css";
 
-const Mainpage = () => {
+const CommpanyMainpage = () => {
   const [jobPostings, setJobPostings] = useState([]);
 
   useEffect(() => {
@@ -36,36 +29,12 @@ const Mainpage = () => {
                 <FontAwesomeIcon icon={faBuilding} />
               </Link>
             </p>
-            <p>
-              <Link to="/analysis">
-                <FontAwesomeIcon icon={faRankingStar} />
-              </Link>
-            </p>
-            <p>
-              <Link to="/Portfolio">
-                <FontAwesomeIcon icon={faCopy} />
-              </Link>
-            </p>
-            <p>
-              <Link to="/Jobrecommend">
-                <FontAwesomeIcon icon={faUser} />
-              </Link>
-            </p>
-            <p>
-              <Link to="/Library">
-                <FontAwesomeIcon icon={faClipboardList} />
-              </Link>
-            </p>
-            <p>
-              <Link to="/community">
-                <FontAwesomeIcon icon={faQuestion} />
-              </Link>
-            </p>
           </ul>
         </section>
-        <section className="survey-section">
-          <Link to="/Survey" className="survey-button">
-            설문조사 이동 버튼
+        <section className="survey-section"></section>
+        <section className="add-section">
+          <Link to="/AddPost" className="add-button">
+            채용공고올리기
           </Link>
         </section>
 
@@ -87,7 +56,9 @@ const Mainpage = () => {
                 <h3>{job.title}</h3>
                 <p>기업명: {job.company}</p>
                 <p>마감일: {job.deadline}</p>
-                <Link to={`/jobPosting/${job.id}`}>자세히 보기</Link>
+                <Link className="mainpage-button" to={`/jobPosting/${job.id}`}>
+                  자세히 보기
+                </Link>
               </div>
             ))}
           </div>
@@ -97,4 +68,4 @@ const Mainpage = () => {
   );
 };
 
-export default Mainpage;
+export default CommpanyMainpage;

@@ -146,7 +146,7 @@ const Signup = () => {
           </div>
           <div>
             <span>기업이라면?</span>
-            <Link to="/CommpanySignup">기업 회원가입</Link>
+            <Link to="/CompanySignup">기업 회원가입</Link>
           </div>
         </div>
       </div>

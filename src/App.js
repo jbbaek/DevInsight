@@ -15,13 +15,16 @@ import InterviewPre from "./pages/InterviewPre";
 import Analysis from "./pages/Analysis";
 import JobRecommend from "./pages/JobRecommend";
 import AddPost from "./pages/AddPost";
-import CommpanySignup from "./pages/CommpanySignup";
+import CompanySignup from "./pages/CompanySignup";
 import LevelTest from "./pages/LevelTest";
 import Library from "./pages/Library";
 import CodingTest from "./pages/CodingTest";
 import QuestionPage from "./pages/QuestionPage";
 import JobPostingDetail from "./pages/JobPostingDetail";
 import CompanyDetail from "./pages/CompanyDetail";
+import CompanyMainpage from "./pages/CompanyMainpage";
+import CompanyMypage from "./pages/CompanyMypage";
+import CompanyPosting from "./pages/CompanyPosting";
 
 function App() {
   return (
@@ -29,6 +32,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Mainpage />} />
+        <Route path="/companymain" element={<CompanyMainpage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/community" element={<Community />} />
@@ -38,16 +42,18 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/companymypage" element={<CompanyMypage />} />
         <Route path="/careerRoadmap" element={<CareerRoadmap />} />
         <Route path="/interviewpre" element={<InterviewPre />} />
         <Route path="/Analysis" element={<Analysis />} />
         <Route path="/JobRecommend" element={<JobRecommend />} />
         <Route path="/AddPost" element={<AddPost />} />
-        <Route path="/CommpanySignup" element={<CommpanySignup />} />
+        <Route path="/CompanySignup" element={<CompanySignup />} />
         <Route path="/LevelTest" element={<LevelTest />} />
         <Route path="/question/:id" element={<QuestionPage />} />
         <Route path="Library" element={<Library />} />
         <Route path="CodingTest" element={<CodingTest />} />
+        <Route path="CompanyPosting" element={<CompanyPosting />} />
       </Routes>
     </>
   );
