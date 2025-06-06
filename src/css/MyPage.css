@@ -1,160 +1,196 @@
-.mypage-container {
-  padding: 30px;
-  font-family: "Pretendard", sans-serif;
-}
-
-.mypage-title {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
 .mypage-subtitle {
-  font-size: 1.2rem;
-  color: #6c757d;
-  margin-bottom: 20px;
+  color: #ff5a96;
+  font-size: 2.1rem;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 36px;
+  letter-spacing: -1.5px;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 4px 24px rgba(255, 87, 150, 0.11);
+  padding: 26px 30px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+
+.profile-icon-box {
+  min-width: 78px;
+  min-height: 78px;
+  background: #ffe4f3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(255, 87, 150, 0.13);
+}
+.profile-icon {
+  color: #ff5a96;
+  font-size: 3.3rem;
+}
+
+.profile-info-box p {
+  color: black;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 1.09rem;
+  letter-spacing: -0.2px;
 }
 
 .mypage-body {
   display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 48px;
   align-items: flex-start;
 }
 
-/* ✅ 사용자 정보 영역 (추가) */
-.profile-row {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin-bottom: 30px;
-}
-
-.profile-icon-box {
-  flex-shrink: 0;
-}
-
-.profile-icon {
-  font-size: 100px;
-  color: #2f3e46;
-}
-
-.profile-info-box {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f4f7fa;
-  padding: 20px;
-  min-width: 1000px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.profile-info-box p {
-  margin: 8px 0;
-  font-size: 1rem;
-}
-
 .mypage-sidebar {
-  width: 200px;
-  border-right: 2px solid #ddd;
-  padding-right: 20px;
+  min-width: 200px;
+  background: white;
+  border-radius: 18px;
+  padding: 28px 14px 28px 22px;
+  box-shadow: 0 4px 20px rgba(255, 87, 150, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  border: 1px solid black;
 }
 
 .mypage-sidebar p {
+  color: black;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 5px 0;
-  color: #007bff;
-  text-decoration: underline;
+  padding: 11px 14px 11px 0;
+  border-radius: 9px;
+  margin: 0;
+  transition: background 0.14s, color 0.14s;
+  letter-spacing: -0.5px;
+  background: transparent;
+}
+.mypage-sidebar p:hover,
+.mypage-sidebar p.selected {
+  background: #ffe4f3;
+  color: #18141b;
 }
 
 .mypage-content {
   flex: 1;
-  padding-left: 20px;
-}
-
-.user-info {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f4f7fa;
-  padding: 15px;
-  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 28px rgba(24, 20, 26, 0.14);
+  padding: 32px 28px;
+  min-height: 350px;
+  border: 1px solid #232025;
 }
 
 .content-title {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  color: black;
+  font-size: 1.28rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
 }
 
 .loading {
-  padding: 30px;
-  font-size: 1.2rem;
-  color: #888;
-}
-.grad-standard {
-  text-align: center;
-  margin-bottom: 10px;
-  color: #2f3e46;
+  color: #ff5a96;
   font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 1.14rem;
+  text-align: center;
+  margin-top: 80px;
+  font-size: 1.13rem;
 }
-.grade-standard-table {
-  width: 350px;
-  border-collapse: collapse;
-  margin: 0 auto 16px auto;
-  font-size: 0.98rem;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
+
+.grad-standard {
+  color: #ff5a96;
+  font-size: 1.07rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  margin-top: 7px;
+}
+
+.grade-standard-table,
+.grade-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 18px;
+  background: #fff;
+  border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0 2px 9px rgba(255, 87, 150, 0.12);
+  border: 1px solid #ffe2f1;
 }
 
 .grade-standard-table th,
-.grade-standard-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-}
-
-.grade-standard-table th {
-  background-color: #dce3ea;
-  color: #2f3e46;
-  font-weight: bold;
-}
-
-.grade-standard-table tr:hover {
-  background-color: #f9f9f9;
-}
-
-.grade-standard-table td:last-child {
-  font-weight: bold;
-  color: #495057;
-}
-.grade-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-size: 0.95rem;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.grade-table th,
-.grade-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-}
-
 .grade-table th {
-  background-color: #dce3ea;
-  color: #2f3e46;
-  font-weight: bold;
+  background: #ffe4f3;
+  color: #ff5a96;
+  font-size: 1.06rem;
+  font-weight: 800;
+  border-bottom: 1px solid #ff5a96;
+  padding: 11px 7px;
+  text-align: center;
 }
 
-.grade-table tr:hover {
-  background-color: #f9f9f9;
+.grade-standard-table td,
+.grade-table td {
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 600;
+  color: #232025; /* 글씨 어두운 블랙 */
+  background: #fff; /* 셀 배경도 흰색 */
+  border-bottom: 1.5px solid #ffe4f3;
 }
 
-.grade-table td:last-child {
-  font-weight: bold;
-  color: #495057;
+.grade-standard-table tr:last-child td,
+.grade-table tr:last-child td {
+  border-bottom: none;
+}
+
+ol {
+  padding-left: 20px;
+}
+ol li {
+  color: black;
+  font-weight: 700;
+  margin-bottom: 5px;
+  letter-spacing: -0.4px;
+}
+
+/* PieChart 등 recharts 색상은 JS에서 COLORS 배열로 조정 */
+
+@media (max-width: 1100px) {
+  .mypage-body {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .mypage-sidebar {
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .mypage-container {
+    padding: 6px 2vw 16px 2vw;
+  }
+  .profile-row,
+  .mypage-content {
+    padding: 13px 2vw 16px 2vw;
+  }
+  .mypage-content {
+    min-height: 180px;
+  }
 }

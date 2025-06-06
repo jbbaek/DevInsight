@@ -16,6 +16,9 @@ h1 {
   flex-direction: column;
   gap: 20px;
 }
+.survey-p {
+  color: black;
+}
 
 .question-block {
   border-bottom: 1px solid #ddd;

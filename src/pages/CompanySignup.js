@@ -101,18 +101,7 @@ const CommpanySignup = () => {
               rows={3}
             />
           </div>
-          <button
-            style={{
-              width: "100%",
-              padding: "10px",
-              backgroundColor: "#fff9e6",
-              border: "none",
-              borderRadius: "4px",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-            type="submit"
-          >
+          <button className="Company-sumbit" type="submit">
             회원가입
           </button>
         </form>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../css/CompanyMypage.css";
 
 const initialState = {
   기업id: "",
@@ -98,68 +99,35 @@ const CompanyMypage = () => {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "0 auto", padding: 32 }}>
-      <h2 style={{ marginBottom: 20 }}>기업 마이페이지</h2>
-      <form onSubmit={handleSave}>
-        {/* 기업id/기업명/비밀번호는 수정 불가(읽기전용+hidden) */}
-        {readOnlyFields.map((key) => (
-          <div className="form-group" key={key} style={{ marginBottom: 14 }}>
-            <label style={{ fontWeight: 500 }}>{labelKor[key]}</label>
-            <input
-              type="text"
-              value={form[key] || ""}
-              readOnly
-              disabled
-              style={{
-                width: "100%",
-                padding: "8px",
-                borderRadius: "4px",
-                border: "1px solid #e6d300",
-                marginTop: 4,
-                backgroundColor: "#f5f5f5",
-              }}
-            />
-            <input type="hidden" name={key} value={form[key] || ""} />
-          </div>
-        ))}
-        {/* 나머지 입력 가능한 필드 */}
-        {Object.keys(initialState)
-          .filter((key) => !readOnlyFields.includes(key))
-          .map((key) => (
-            <div className="form-group" key={key} style={{ marginBottom: 14 }}>
-              <label style={{ fontWeight: 500 }}>{labelKor[key]}</label>
-              <input
-                type="text"
-                name={key}
-                value={form[key] || ""}
-                onChange={handleChange}
-                style={{
-                  width: "100%",
-                  padding: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #e6d300",
-                  marginTop: 4,
-                  backgroundColor: "#fffbe7",
-                }}
-              />
+    <div className="companymypage-bg">
+      <div className="companymypage-card">
+        <h2 className="companymypage-title">기업 마이페이지</h2>
+        <form onSubmit={handleSave}>
+          {readOnlyFields.map((key) => (
+            <div className="form-group" key={key}>
+              <label>{labelKor[key]}</label>
+              <input type="text" value={form[key] || ""} readOnly disabled />
+              <input type="hidden" name={key} value={form[key] || ""} />
             </div>
           ))}
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "12px",
-            backgroundColor: "#fff9e6",
-            border: "none",
-            borderRadius: "4px",
-            fontSize: "16px",
-            cursor: "pointer",
-            fontWeight: "600",
-          }}
-        >
-          저장
-        </button>
-      </form>
+          {Object.keys(initialState)
+            .filter((key) => !readOnlyFields.includes(key))
+            .map((key) => (
+              <div className="form-group" key={key}>
+                <label>{labelKor[key]}</label>
+                <input
+                  type="text"
+                  name={key}
+                  value={form[key] || ""}
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
+          <button className="companymypage-save-btn" type="submit">
+            저장
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

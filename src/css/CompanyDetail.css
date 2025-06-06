@@ -1,69 +1,97 @@
 .company-detail-container {
-  padding: 40px;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
-
-.page-title {
-  font-size: 24px;
-  margin-bottom: 24px;
-  color: #333;
-}
-
-.company-section {
+  min-height: 100vh;
+  background: white;
   display: flex;
-  gap: 24px;
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ddd;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0 40px 0;
 }
 
+.company-detail-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1.5px solid #ff5a96;
+
+  width: 95vw;
+  padding: 40px 36px 30px 36px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-detail-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ff5a96;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+/* 정사각형 로고 (원형 X) */
 .company-logo {
-  width: 160px;
-  height: 160px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
-  border: 1px solid #ddd;
-  background-color: #e4f5b5;
+  background: #fff;
+  border: 2.5px solid #ffb7ce;
+  margin-bottom: 20px;
+  border-radius: 10px; /* 네모, 아주 살짝 둥글림 */
+  box-shadow: none;
 }
 
-.logo-placeholder {
-  width: 160px;
-  height: 160px;
+.company-logo-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background: #ffe4f3;
+  color: #ff5a96;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #c8f28f;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2.5px dashed #ffb7ce;
+  margin-bottom: 20px;
 }
 
-.company-info {
-  flex: 1;
+.company-detail-card p {
+  margin: 8px 0 0 0;
+  color: #222;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  width: 100%;
+  border-bottom: 1px solid #ffe4f3;
+  padding-bottom: 4px;
 }
 
-.company-info p {
-  margin: 6px 0;
+.company-detail-card p:last-child {
+  border-bottom: none;
 }
 
-.company-info a {
-  color: #007bff;
-  text-decoration: none;
+.company-detail-card strong {
+  color: #ff5a96;
+  font-weight: 700;
+  margin-right: 3px;
 }
 
-.company-info a:hover {
+.company-detail-card a {
+  color: #ff5a96;
   text-decoration: underline;
 }
-
-.job-info-section {
-  margin-top: 32px;
-  background-color: #fff;
-  padding: 24px;
-  border: 1px solid #ccc;
+.company-detail-card a:hover {
+  color: #18141b;
+  background: #ffe4f3;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 0 3px;
 }
 
-.section-title {
-  font-size: 20px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
+@media (max-width: 600px) {
+  .company-detail-card {
+    padding: 17px 2vw 12px 2vw;
+  }
 }

@@ -1,0 +1,91 @@
+.companymypage-bg {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 0;
+}
+
+.companymypage-card {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 95vw;
+  padding: 36px 26px 26px 26px;
+  box-sizing: border-box;
+  border: 1.5px solid black;
+  box-shadow: none;
+  margin: 0 auto;
+}
+
+.companymypage-title {
+  font-size: 1.38rem;
+  font-weight: 800;
+  color: #ff5a96;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 700;
+  color: #ff5a96;
+  margin-bottom: 5px;
+  font-size: 1.01rem;
+}
+
+.form-group input[readonly],
+.form-group input:disabled {
+  background: #f8f8f8;
+  color: #a2a2a2;
+  border: 1px solid #ffb7ce;
+}
+
+.form-group input[type="text"] {
+  padding: 11px 11px;
+  border-radius: 8px;
+  border: 1.5px solid #ffe2f1;
+  background: white;
+  color: #18141b;
+  font-size: 1.02rem;
+  transition: border 0.13s;
+}
+
+.form-group input[type="text"]:focus {
+  border: 1.5px solid #ff5a96;
+  background: #fff;
+  outline: none;
+}
+
+.companymypage-save-btn {
+  width: 100%;
+  padding: 13px 0;
+  margin-top: 12px;
+  background: #ff5a96;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.08rem;
+  font-weight: 900;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, color 0.15s;
+}
+.companymypage-save-btn:hover {
+  background: #18141b;
+  color: #ff5a96;
+}
+
+@media (max-width: 500px) {
+  .companymypage-card {
+    padding: 18px 3vw 18px 3vw;
+    min-width: unset;
+  }
+}

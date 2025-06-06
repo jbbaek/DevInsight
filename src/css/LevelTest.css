@@ -1,103 +1,139 @@
 .level-test-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 48px auto 0 auto;
+  padding: 38px 20px 48px 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 40px rgba(255, 87, 150, 0.08);
+  font-family: "Pretendard", "sans-serif";
 }
+
+.level-test-container h1 {
+  color: black;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 14px;
+  letter-spacing: -1px;
+}
+
+.coding-test-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  background: #ffb7ce;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.08rem;
+  padding: 10px 22px;
+  border-radius: 7px;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+}
+.coding-test-link:hover {
+  background: #222;
+  color: #ffe8f2;
+}
+
 .dropdown-filters {
-  margin: 1rem 0;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 28px;
 }
 
 .dropdown-filters select {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 9px 17px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  font-size: 1.01rem;
+  font-weight: 700;
+  color: #222;
+  background: #fff;
+  transition: border 0.14s, color 0.14s;
 }
-h1,
-h2 {
-  text-align: center;
-  color: #333;
+
+.dropdown-filters select:focus {
+  border: 2px solid black;
+  outline: none;
+  color: black;
 }
 
 .technologies-table,
 .questions-table {
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.technologies-table th,
-.technologies-table td,
-.questions-table th,
-.questions-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 16px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(255, 183, 206, 0.09);
 }
 
 .technologies-table th,
 .questions-table th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-.technologies-table tr:hover,
-.questions-table tr:hover {
-  background-color: #f9f9f9;
-  cursor: pointer;
-}
-
-.technologies-table tr.selected {
-  background-color: #e6f3ff;
-  font-weight: bold;
-}
-
-.questions-section {
-  margin-top: 30px;
-}
-
-.loading {
+  background: #ffb7ce;
+  color: black;
+  font-size: 1.07rem;
+  font-weight: 800;
+  border-bottom: 2px solid #ffb7ce;
+  padding: 12px 8px;
   text-align: center;
-  font-size: 18px;
-  color: #666;
-  margin: 20px 0;
 }
 
-.error {
+.technologies-table td,
+.questions-table td {
+  padding: 12px 8px;
   text-align: center;
-  font-size: 18px;
-  color: #d32f2f;
-  margin: 20px 0;
-}
-
-.coding-test-link {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #4b84e4;
-  color: #ffffff;
-  font-size: 1.1rem;
   font-weight: 600;
+  color: #222;
+  background: #fff;
+  border-bottom: 1.5px solid #ffe8f2;
+  cursor: pointer;
+  transition: background 0.13s, color 0.13s;
+}
+
+.technologies-table tr:hover td,
+.questions-table tr:hover td {
+  background: #ffe8f2;
+  color: black;
+}
+
+button {
+  background: #ff5a96;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+button:hover {
+  background: #222;
+  color: #ff5a96;
+}
+
+.loading,
+.error {
+  color: #ff5a96;
+  font-weight: bold;
   text-align: center;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.25s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 80px;
+  font-size: 1.15rem;
 }
 
-.coding-test-link:hover {
-  background-color: #3a6fcc;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.coding-test-link:active {
-  background-color: #335fb3;
-  transform: scale(0.98);
+@media (max-width: 900px) {
+  .level-test-container {
+    padding: 13px 2vw 24px 2vw;
+  }
+  .dropdown-filters {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .technologies-table,
+  .questions-table {
+    font-size: 0.98rem;
+  }
 }

@@ -459,7 +459,7 @@ const Survey = () => {
       <div className="survey">
         {questions.map((q, index) => (
           <div key={index} className="question-block">
-            <p>
+            <p className="survey-p">
               {index + 1}. {q.question}
             </p>
             {q.type === "scale" && (

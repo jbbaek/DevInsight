@@ -1,55 +1,62 @@
-/* Root container for the entire component */
 .coding-test-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px;
-  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
+  padding: 36px 16px 48px 16px;
+  font-family: "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  background: #18141b;
+  color: #ffe8f2;
+  min-height: 100vh;
+  border-radius: 18px;
+  box-shadow: 0 6px 40px rgba(255, 183, 206, 0.13);
 }
 
-/* Loading state */
+.coding-test-title,
+.problem-list-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ff5a96;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
 .loading-container,
 .error-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 60vh;
   text-align: center;
 }
-
-.loading-text {
-  font-size: 1.5rem;
-  color: #4b5563;
-}
-
+.loading-text,
 .error-text {
-  font-size: 1.5rem;
-  color: #dc2626;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ff5a96;
 }
 
-/* Problem list container */
-.problem-list-container {
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+.problem-list-container,
+.problem-detail-container {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
   padding: 32px;
   width: 100%;
   max-width: 1000px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Problem list title */
 .problem-list-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1f2937;
+  color: #18141b;
+  font-size: 2rem;
   margin-bottom: 24px;
+  font-weight: 700;
 }
 
-/* Filter bar */
 .filter-bar {
   margin-bottom: 20px;
   display: flex;
@@ -57,13 +64,11 @@
   gap: 20px;
   flex-wrap: wrap;
 }
-
 .filter-bar label {
   font-weight: 500;
   color: #374151;
   font-size: 1rem;
 }
-
 .filter-bar select {
   padding: 8px 12px;
   font-size: 1rem;
@@ -71,39 +76,48 @@
   border: 1px solid #ccc;
   background-color: #f9fafb;
   color: #1f2937;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s;
 }
-
 .filter-bar select:hover,
 .filter-bar select:focus {
   border-color: #4b84e4;
   outline: none;
 }
 
-/* Table */
-.problem-table {
+.problem-table,
+.coding-question-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 14px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(255, 183, 206, 0.09);
 }
-
 .problem-table th,
-.problem-table td {
-  border: 1px solid #d1d5db;
-  padding: 12px 16px;
-  text-align: left;
-  font-size: 1.1rem;
-  color: #1f2937;
+.coding-question-table th {
+  background: #ffb7ce;
+  color: #18141b;
+  font-size: 1.07rem;
+  font-weight: 800;
+  border-bottom: 2px solid #ffb7ce;
+  padding: 12px 8px;
+  text-align: center;
 }
-
-.problem-table th {
-  background-color: #f3f4f6;
-  font-weight: 700;
+.problem-table td,
+.coding-question-table td {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  color: #222;
+  background: #fff;
+  border-bottom: 1.5px solid #ffe8f2;
+  transition: background 0.13s, color 0.13s;
 }
-
-.problem-table tr:hover {
-  background-color: #e5e7eb;
-  cursor: pointer;
+.problem-table tr:hover td,
+.coding-question-table tr:hover td {
+  background: #ffe8f2;
+  color: #18141b;
 }
 
 .no-problems-text {
@@ -112,28 +126,17 @@
   margin-top: 20px;
 }
 
-/* Detail View */
-.problem-detail-container {
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 32px;
-  width: 100%;
-  max-width: 1000px;
-  text-align: center;
-}
-
 .problem-detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
 }
-
 .problem-detail-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1f2937;
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #ff5a96;
+  letter-spacing: -1px;
 }
 
 .problem-detail-content {
@@ -142,93 +145,123 @@
   gap: 24px;
 }
 
-/* Sections */
 .detail-section {
   text-align: left;
   max-width: 900px;
   margin: 0 auto;
 }
-
 .detail-section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #374151;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff5a96;
   margin-bottom: 12px;
 }
-
 .detail-text {
   color: #4b5563;
-  font-size: 1.25rem;
+  font-size: 1.13rem;
   white-space: pre-wrap;
 }
 
-/* Code blocks */
 .code-block {
   background-color: #f3f4f6;
   padding: 20px;
   border-radius: 4px;
   color: #4b5563;
-  font-family: "Fira Code", monospace;
-  font-size: 1.125rem;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 1.12rem;
   overflow-x: auto;
   margin: 0 auto;
   text-align: left;
   max-width: 900px;
 }
 
-/* Back button */
+.coding-test-editor {
+  width: 100%;
+  min-height: 120px;
+  border: 1.7px solid #ffe8f2;
+  border-radius: 8px;
+  background: #fff;
+  color: #18141b;
+  font-size: 1.02rem;
+  padding: 13px 10px;
+  margin-top: 14px;
+  margin-bottom: 17px;
+  font-family: "Fira Mono", "Consolas", monospace;
+}
+
+.coding-test-timer {
+  font-size: 1.08rem;
+  color: #ff5a96;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.coding-test-btn,
+.back-button {
+  background: #ff5a96;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.coding-test-btn:hover,
+.back-button:hover {
+  background: #18141b;
+  color: #ff5a96;
+}
+
 .back-button {
   background-color: #4b5563;
-  color: #ffffff;
+  color: #fff;
   padding: 10px 20px;
   border-radius: 4px;
-  border: none;
   font-size: 1.125rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  margin-top: 10px;
 }
-
 .back-button:hover {
   background-color: #374151;
+  color: #ff5a96;
 }
 
-/* Responsive */
-@media (max-width: 640px) {
+@media (max-width: 800px) {
   .coding-test-container {
-    padding: 12px;
+    padding: 13px 2vw 24px 2vw;
   }
-
   .problem-list-container,
   .problem-detail-container {
     padding: 20px;
   }
-
-  .problem-list-title {
-    font-size: 2rem;
+  .problem-list-title,
+  .coding-test-title {
+    font-size: 1.3rem;
   }
-
   .problem-table th,
-  .problem-table td {
-    font-size: 1rem;
-    padding: 8px 12px;
+  .coding-question-table th,
+  .problem-table td,
+  .coding-question-table td {
+    font-size: 0.99rem;
+    padding: 8px 10px;
   }
-
   .detail-section-title {
-    font-size: 1.25rem;
+    font-size: 1.09rem;
   }
-
   .detail-text,
   .code-block {
     font-size: 1rem;
   }
-
   .back-button {
     padding: 8px 16px;
     font-size: 1rem;
   }
-
   .filter-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 }

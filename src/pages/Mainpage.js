@@ -27,7 +27,7 @@ const Mainpage = () => {
 
   return (
     <div className="main-container">
-      <div style={{ padding: "20px", backgroundColor: "#f5f5f5" }}>
+      <div className="main-content-wrapper">
         {/* 주요 메뉴 */}
         <section className="main-icons">
           <ul>
@@ -71,23 +71,20 @@ const Mainpage = () => {
 
         {/* 채용공고 미리보기 */}
         <section style={{ marginTop: "40px" }}>
-          <h2>현재 채용공고</h2>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+          <h2 className="main-job-section-title">현재 채용공고</h2>
+          <div className="main-job-list">
             {jobPostings.map((job) => (
-              <div
-                key={job.id}
-                style={{
-                  border: "1px solid #ccc",
-                  padding: "12px",
-                  width: "300px",
-                  borderRadius: "8px",
-                  backgroundColor: "#ffffff",
-                }}
-              >
-                <h3>{job.title}</h3>
-                <p>기업명: {job.company}</p>
-                <p>마감일: {job.deadline}</p>
-                <Link to={`/jobPosting/${job.id}`}>자세히 보기</Link>
+              <div className="main-job-card" key={job.id}>
+                <div>
+                  <div className="main-job-title">{job.title}</div>
+                  <div className="main-job-company">기업명: {job.company}</div>
+                  <div className="main-job-deadline">
+                    마감일: {job.deadline}
+                  </div>
+                </div>
+                <Link className="main-job-link" to={`/jobPosting/${job.id}`}>
+                  자세히 보기
+                </Link>
               </div>
             ))}
           </div>

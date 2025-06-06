@@ -1,95 +1,192 @@
-.main-container {
-  width: 100%;
-  background-color: #f5f5f5;
+/* 전체 배경 및 컨테이너 */
+
+/* 메인 전체 감싸는 내부 영역 */
+.main-content-wrapper {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 0 36px;
 }
+/* 주요 메뉴(아이콘) */
 .main-icons {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 30px;
+  gap: 36px;
+  margin: 38px 0 16px 0;
 }
-
 .main-icons ul {
   display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 36px;
+  list-style: none;
   padding: 0;
   margin: 0;
-  list-style: none;
+}
+.main-icons p {
+  margin: 0;
 }
 
-.main-icons ul p {
+.main-icons a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  font-size: 14px;
-  color: #333;
-  width: 100px;
-  transition: transform 0.2s;
-}
-
-.main-icons ul p:hover {
-  transform: scale(1.05);
-}
-
-.main-icons ul p a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.main-icons ul p svg {
-  font-size: 48px;
-  margin-bottom: 8px;
-  color: #6c9cd3;
-}
-
-/* 설문조사 버튼 영역 */
-.survey-section {
-  display: flex;
   justify-content: center;
-  margin: 50px 0 30px;
+  font-size: 2.2rem;
+  color: #ffb7ce;
+  background: #222;
+
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  box-shadow: 0 2px 12px rgba(255, 183, 206, 0.1);
+}
+.main-icons a:hover {
+  background: #ffb7ce;
+  color: black;
+  border: 2.2px solid #ffb7ce;
+}
+
+/* 설문조사 버튼 */
+.survey-section {
+  text-align: center;
+  margin: 28px 0 0 0;
 }
 
 .survey-button {
-  background-color: #e89b97;
-  color: black;
-  padding: 16px 32px;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
+  display: inline-block;
+  background: #ffb7ce;
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 32px;
+  margin-top: 0;
+  box-shadow: 0 4px 12px rgba(255, 183, 206, 0.14);
+  cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
-  transition: all 0.2s ease;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
+
 .survey-button:hover {
-  background-color: #d8817b;
-  transform: translateY(-2px);
+  background: #222;
+  color: #ffe8f2;
+  box-shadow: 0 8px 18px rgba(34, 34, 34, 0.08);
 }
 .add-section {
-  display: flex;
-  justify-content: center;
-  margin: 50px 0 30px;
+  text-align: center;
+  margin: 28px 0 0 0;
 }
 .add-button {
-  background-color: #6695df;
-  color: black;
-  padding: 16px 32px;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
+  display: inline-block;
+  background: #ffb7ce;
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 32px;
+  margin-top: 0;
+  box-shadow: 0 4px 12px rgba(255, 183, 206, 0.14);
+  cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
-  transition: all 0.2s ease;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .add-button:hover {
-  transform: translateY(-2px);
+  background: #222;
+  color: #ffe8f2;
+  box-shadow: 0 8px 18px rgba(34, 34, 34, 0.08);
+}
+/* 섹션 제목 */
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #a28d00;
+  margin-bottom: 18px;
+}
+
+.main-job-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 24px;
+  width: 100%;
+}
+@media (max-width: 1200px) {
+  .main-job-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .main-job-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .main-job-list {
+    grid-template-columns: 1fr;
+  }
+}
+.main-job-card {
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid #ffe8f2;
+  box-shadow: 0 4px 16px rgba(34, 34, 34, 0.09);
+  padding: 22px 20px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.18s, border 0.18s;
+  height: 170px;
+}
+.main-job-card:hover {
+  border-color: #ffb7ce;
+  box-shadow: 0 8px 28px rgba(255, 183, 206, 0.17);
+}
+.main-job-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.main-job-company {
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 4px;
+}
+
+.main-job-deadline {
+  font-size: 0.98rem;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.main-job-link {
+  align-self: flex-end;
+  background: #ffe8f2;
+  color: #222;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 6px rgba(255, 183, 206, 0.13);
+  transition: background 0.18s, color 0.18s;
+}
+
+.main-job-link:hover {
+  background: #ffb7ce;
+  color: #fff;
+}
+
+/* 섹션 제목 */
+.main-job-section-title {
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 18px;
 }

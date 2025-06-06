@@ -71,7 +71,19 @@ button:hover {
   text-decoration: none;
   margin-left: 5px;
 }
-
+.Company-sumbit {
+  width: 100%;
+  background: #ff5a96;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 0;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  box-shadow: 0 2px 8px rgba(255, 183, 206, 0.1);
+}
 .footer a:hover {
   text-decoration: underline;
 }

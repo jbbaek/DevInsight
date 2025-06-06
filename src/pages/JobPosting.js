@@ -138,8 +138,6 @@ const JobPosting = () => {
 
   return (
     <div className="job-posting-container">
-      <h2>채용 공고 페이지</h2>
-
       <div className="filters">
         <label>
           기술스택:
@@ -203,18 +201,9 @@ const JobPosting = () => {
       {/* 채용공고 미리보기 */}
       <section style={{ marginTop: "40px" }}>
         <h2>채용공고</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+        <div className="job-cards-list">
           {filteredJobs.map((job) => (
-            <div
-              key={job.채용공고id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "12px",
-                width: "300px",
-                borderRadius: "8px",
-                backgroundColor: "#ffffff",
-              }}
-            >
+            <div className="job-card" key={job.채용공고id}>
               <h3>{job.제목}</h3>
               <p>기업명: {job.기업명}</p>
               <p>마감일: {job.마감일}</p>

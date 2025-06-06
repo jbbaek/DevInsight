@@ -1,101 +1,109 @@
+.loading {
+  color: #ff5a96;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 90px;
+  font-size: 1.18rem;
+}
+
 .question-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 24px;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  font-family: "Arial", sans-serif;
+  max-width: 580px;
+  margin: 36px auto 0 auto;
+  padding: 34px 16px 40px 16px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 5px 32px rgba(255, 87, 150, 0.09);
+  border: 2.5px solid #ffe8f2;
 }
 
 .question-title {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #333;
+  color: #ff5a96;
+  font-size: 1.45rem;
+  font-weight: 900;
+  margin-bottom: 16px;
 }
 
 .question-content {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  color: #222;
+  font-size: 1.13rem;
+  font-weight: 700;
+  margin-bottom: 26px;
 }
 
 .options-list {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 .option-item {
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 12px;
+  color: #222;
+  font-weight: 700;
+  font-size: 1.08rem;
+  padding: 14px 18px;
+  margin-bottom: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.option-item:hover {
-  background-color: #f0f0f0;
+  transition: background 0.18s, color 0.18s, border 0.18s;
 }
 
 .option-item.selected {
-  background-color: #dce3ea; /* 선택되었을 때 연한 파란색 */
-  border-color: #a9bcd0;
-  font-weight: 600;
-}
-
-.option-label {
-  font-weight: bold;
-  margin-right: 8px;
-  color: #444;
-}
-
-.submit-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #fff9e6;
-  color: black;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.submit-button:hover {
-  background-color: #fff9e6;
-}
-
-.loading {
-  text-align: center;
-  margin-top: 100px;
-  font-size: 1.2rem;
-}
-.option-item {
-  padding: 12px;
-  margin-bottom: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: white;
-  transition: background-color 0.2s ease;
-}
-
-.option-item:hover {
-  background-color: #f2f2f2;
+  background: #ffb7ce;
+  color: #222;
+  border: 2px solid #ffb7ce;
 }
 
 .option-item.correct {
-  background-color: #d4edda;
-  border-color: #28a745;
-  color: #155724;
+  border: 2px solid #2ec76d; /* 초록 테두리 */
+  background: #fff;
+  color: #222;
 }
 
 .option-item.incorrect {
-  background-color: #f8d7da;
-  border-color: #dc3545;
-  color: #721c24;
+  border: 2px solid #ff2f4b; /* 빨간 테두리 */
+  background: #fff;
+  color: #222;
+}
+
+.option-item:hover:not(.correct):not(.incorrect):not(.selected) {
+  background: #ffe8f2;
+}
+
+.submit-button {
+  background: #ffb7ce;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 27px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.16s, color 0.16s;
+}
+
+.submit-button:hover {
+  background: #222;
+  color: #ffb7ce;
 }
 
 .feedback {
-  margin-top: 20px;
-  font-weight: bold;
-  color: green;
+  font-size: 1.11rem;
+  font-weight: 700;
+  color: black;
+  margin-top: 16px;
+  min-height: 1.4em;
+}
+
+@media (max-width: 700px) {
+  .question-container {
+    padding: 13px 2vw 20px 2vw;
+  }
+  .option-item {
+    font-size: 0.98rem;
+    padding: 11px 7px;
+  }
 }

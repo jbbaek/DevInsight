@@ -1,0 +1,88 @@
+.companyposting-bg {
+  min-height: 100vh;
+  background: white;
+  padding-top: 44px;
+  box-sizing: border-box;
+}
+
+.companyposting-wrapper {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 30px 4vw 40px 4vw;
+  background: none;
+}
+
+.companyposting-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ff5a96;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.companyposting-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1.5px solid #ff5a96;
+}
+
+.companyposting-table th {
+  background: #ffe4f3;
+  color: #ff5a96;
+  font-size: 1.09rem;
+  font-weight: 800;
+  border-bottom: 1.5px solid #ff5a96;
+  padding: 13px 0;
+  text-align: center;
+}
+
+.companyposting-table td {
+  padding: 12px 0;
+  font-size: 1.01rem;
+  color: #18141b;
+  background: #fff;
+  border-bottom: 1px solid #ffe4f3;
+  text-align: center;
+}
+
+.companyposting-table tr:last-child td {
+  border-bottom: none;
+}
+
+.companyposting-link {
+  padding: 7px 22px;
+  border-radius: 6px;
+  background: #ff5a96;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  transition: background 0.14s, color 0.14s;
+  display: inline-block;
+}
+.companyposting-link:hover {
+  background: #18141b;
+  color: #ff5a96;
+  border: 1.5px solid #ff5a96;
+}
+
+@media (max-width: 600px) {
+  .companyposting-wrapper {
+    padding: 14px 1vw 20px 1vw;
+  }
+  .companyposting-table th,
+  .companyposting-table td {
+    font-size: 0.94rem;
+    padding: 8px 0;
+  }
+  .companyposting-link {
+    padding: 5px 12px;
+    font-size: 0.95rem;
+  }
+}

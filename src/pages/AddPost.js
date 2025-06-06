@@ -119,14 +119,8 @@ const AddPost = () => {
             className="addpost-check-btn"
             onClick={handleCheckId}
             style={{
-              marginLeft: "10px",
-              padding: "8px 16px",
-              backgroundColor: "#6695df",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontWeight: "500",
+              width: "100%",
+              padding: "10px 0",
             }}
           >
             중복확인

@@ -1,22 +1,23 @@
 .navbar {
-  background-color: #fff9e6;
+  background-color: #111014; /* 거의 완전 블랙 계열 */
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* 고정하지 않음 */
+  box-shadow: 0px 2px 8px rgba(255, 151, 190, 0.07);
+  position: relative;
   z-index: 10;
 }
-
 .navbar-logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #ffb7ce;
 }
 
 .navbar-logo a {
-  color: #000;
+  color: #ff5a96; /* 선명한 핑크 */
   text-decoration: none;
+  letter-spacing: -0.5px;
 }
 
 .navbar-links {
@@ -31,11 +32,20 @@
 }
 
 .navbar-links a {
-  color: #333;
+  color: #ffb7ce; /* 연핑크 */
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 5px;
+  transition: color 0.18s, background 0.18s, box-shadow 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .navbar-links a:hover {
-  color: #007bff; /* 링크에 호버 시 색상 변경 */
+  color: #fff;
+  background: #ff5a96; /* 진한 핑크 */
+  box-shadow: 0 0 12px rgba(255, 90, 150, 0.13);
 }

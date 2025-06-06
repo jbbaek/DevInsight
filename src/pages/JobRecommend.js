@@ -173,7 +173,7 @@ const JobRecommend = () => {
               </div>
             ))}
           </div>
-          <button onClick={handleSubmit} className="submit-button">
+          <button onClick={handleSubmit} className="job-submit-button">
             결과 제출
           </button>
         </>

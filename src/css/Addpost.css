@@ -1,72 +1,116 @@
 .addpost-container {
-  max-width: 680px;
-  margin: 40px auto;
-  padding: 32px 24px;
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column; /* 추가: column 정렬 */
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
 }
 
 .addpost-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 28px;
-  color: black; /* 진한 노랑/황금 계열 */
   text-align: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ff5a96;
+  margin-bottom: 28px; /* 박스와 간격 더 넉넉하게 */
+  letter-spacing: -1px;
+  z-index: 2;
 }
 
 .addpost-form {
+  background: #fff;
+  border-radius: 15px;
+  padding: 36px 22px 28px 22px;
+  border: 1.5px solid black;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
+  box-sizing: border-box;
 }
 
 .addpost-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 17px;
 }
 
 .addpost-row label {
-  flex: 0 0 110px;
-  font-weight: 500;
-  color: #8a8500;
+  flex: 0 0 90px;
+  font-weight: 700;
+  color: #ff5a96;
+  font-size: 1.01rem;
 }
 
 .addpost-input {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #e6d300;
+  padding: 10px 12px;
+  border: 1px solid #d3d3d3;
   border-radius: 7px;
-  font-size: 15px;
-  background: #fff; /* 입력창 배경은 하얀색 */
+  font-size: 1rem;
+  background: #faf6fa;
+  color: #18141b;
+  transition: border 0.12s, background 0.12s;
+}
+.addpost-input:focus {
+  border: 1.5px solid #ff5a96;
+  background: #fff;
+  outline: none;
+}
+
+.addpost-row textarea.addpost-input {
+  min-height: 60px;
+  resize: vertical;
 }
 
 .addpost-check-btn {
-  background: #fff9e6;
-  color: black;
-  border: 1px solid #e6d300;
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.addpost-check-btn:hover {
-  background: #e6d300;
+  background: #ff5a96;
   color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.97rem;
+  transition: background 0.13s, color 0.13s;
+  margin-left: 5px;
+}
+.addpost-check-btn:hover {
+  background: #18141b;
+  color: #ff5a96;
 }
 
 .addpost-submit-btn {
   width: 100%;
-  margin-top: 18px;
-  background-color: #fff9e6;
-  color: #8a8500;
-  padding: 16px 0;
-  border: 1px solid #e6d300;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 500;
+  margin-top: 20px;
+  background: #ff5a96;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 0;
+  font-size: 1.08rem;
+  font-weight: 800;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(230, 211, 0, 0.1);
-  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.02em;
+  transition: background 0.17s, color 0.17s;
   cursor: pointer;
+}
+.addpost-submit-btn:hover {
+  background: #18141b;
+  color: #ff5a96;
+}
+
+@media (max-width: 600px) {
+  .addpost-form {
+    max-width: 99vw;
+    padding: 20px 2vw 18px 2vw;
+  }
+  .addpost-row label {
+    flex: 0 0 75px;
+    font-size: 0.98rem;
+  }
 }
