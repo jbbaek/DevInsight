@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Signup.css";
 
 const Signup = () => {
@@ -12,6 +12,8 @@ const Signup = () => {
     역할: "학생",
     이미지url: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +45,7 @@ const Signup = () => {
 
       if (res.ok) {
         alert("회원가입 성공!");
-        // redirect or reset
+        navigate("/login"); // 회원가입 후 로그인 화면으로 이동!
       } else {
         const result = await res.json();
         alert(`회원가입 실패: ${result.message}`);

@@ -190,3 +190,21 @@ h2 {
   color: black;
   margin-bottom: 18px;
 }
+.mainpage-button {
+  align-self: flex-end;
+  background: #ffe8f2;
+  color: #222;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 6px rgba(255, 183, 206, 0.13);
+  transition: background 0.18s, color 0.18s;
+}
+.mainpage-button:hover {
+  background: #ffb7ce;
+  color: #fff;
+}
