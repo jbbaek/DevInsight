@@ -28,6 +28,7 @@ const CommpanyMainpage = () => {
               <Link to="/jobPosting">
                 <FontAwesomeIcon icon={faBuilding} />
               </Link>
+              <div className="main-icon-label">채용공고</div>
             </p>
           </ul>
         </section>

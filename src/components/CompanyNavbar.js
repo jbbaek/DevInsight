@@ -37,7 +37,7 @@ function CompanyNavbar() {
             style={{
               background: "none",
               border: "none",
-              color: "blue",
+              color: "#ffb7ce",
               cursor: "pointer",
               padding: 0,
               textDecoration: "underline",

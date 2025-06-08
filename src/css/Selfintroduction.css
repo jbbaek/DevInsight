@@ -1,0 +1,119 @@
+.selfintro-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(30, 50, 70, 0.07);
+  padding: 32px 40px 40px 40px;
+  font-family: "Pretendard", sans-serif;
+}
+
+.selfintro-title {
+  font-size: 2rem;
+  color: #ffb7ce;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.selfintro-desc {
+  color: black;
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
+
+.selfintro-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px #ffb7ce;
+}
+
+.selfintro-table th,
+.selfintro-table td {
+  padding: 14px 18px;
+  text-align: left;
+}
+
+.selfintro-table th {
+  background: #ffb7ce;
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid #ffb7ce;
+}
+
+.selfintro-table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.selfintro-table tr:last-child {
+  border-bottom: none;
+}
+
+.selfintro-view-btn {
+  background: #ffb7ce;
+  color: #fff;
+  border: none;
+  padding: 7px 22px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.selfintro-view-btn:hover {
+  background: #ffe4f3;
+}
+
+.selfintro-detail-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(140, 150, 160, 0.07);
+  padding: 32px 32px 28px 32px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border: 1.5px solid #dce3ea;
+}
+
+.selfintro-detail-header {
+  font-size: 1.25rem;
+  color: #3d4e56;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.selfintro-detail-info {
+  font-size: 1rem;
+  color: black;
+  margin-bottom: 18px;
+}
+
+.selfintro-question {
+  color: black;
+  font-weight: bold;
+  margin-top: 17px;
+  margin-bottom: 2px;
+  font-size: 1.05rem;
+}
+
+.selfintro-answer {
+  margin-left: 12px;
+  margin-bottom: 2px;
+  font-size: 1rem;
+  color: #343a40;
+}
+
+.selfintro-back-btn {
+  background: #ffb7ce;
+  color: black;
+  border: none;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.selfintro-back-btn:hover {
+  background-color: #ffe4f3;
+  color: black;
+}

@@ -76,6 +76,9 @@ function Navbar() {
           <Link to="/Portfolio">포트폴리오 분석</Link>
         </li>
         <li>
+          <Link to="/Selfintroduction">합격자소서</Link>
+        </li>
+        <li>
           <Link to="/Jobrecommend">직무 추천</Link>
         </li>
         <li>

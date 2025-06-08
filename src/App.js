@@ -25,6 +25,7 @@ import CompanyDetail from "./pages/CompanyDetail";
 import CompanyMainpage from "./pages/CompanyMainpage";
 import CompanyMypage from "./pages/CompanyMypage";
 import CompanyPosting from "./pages/CompanyPosting";
+import Selfintroduction from "./pages/Selfintroduction";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path="/interviewpre" element={<InterviewPre />} />
         <Route path="/Analysis" element={<Analysis />} />
         <Route path="/JobRecommend" element={<JobRecommend />} />
+        <Route path="/Selfintroduction" element={<Selfintroduction />} />
         <Route path="/AddPost" element={<AddPost />} />
         <Route path="/CompanySignup" element={<CompanySignup />} />
         <Route path="/LevelTest" element={<LevelTest />} />

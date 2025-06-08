@@ -6,8 +6,9 @@ import {
   faRankingStar,
   faCopy,
   faClipboardList,
-  faQuestion,
   faUser,
+  faComment,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import "../css/Mainpage.css";
 
@@ -32,34 +33,47 @@ const Mainpage = () => {
         <section className="main-icons">
           <ul>
             <p>
-              <Link to="/jobPosting">
+              <Link to="/jobPosting" className="main-icon-link">
                 <FontAwesomeIcon icon={faBuilding} />
               </Link>
+              <div className="main-icon-label">채용공고</div>
             </p>
             <p>
-              <Link to="/analysis">
+              <Link to="/analysis" className="main-icon-link">
                 <FontAwesomeIcon icon={faRankingStar} />
               </Link>
+              <div className="main-icon-label">트렌드분석</div>
             </p>
             <p>
-              <Link to="/Portfolio">
+              <Link to="/Selfintroduction" className="main-icon-link">
                 <FontAwesomeIcon icon={faCopy} />
               </Link>
+              <div className="main-icon-label">합격자소서</div>
             </p>
+
             <p>
-              <Link to="/Jobrecommend">
+              <Link to="/Jobrecommend" className="main-icon-link">
                 <FontAwesomeIcon icon={faUser} />
               </Link>
+              <div className="main-icon-label">직군 추천</div>
             </p>
             <p>
-              <Link to="/Library">
+              <Link to="/LevelTest" className="main-icon-link">
                 <FontAwesomeIcon icon={faClipboardList} />
               </Link>
+              <div className="main-icon-label">DLT</div>
             </p>
             <p>
-              <Link to="/community">
-                <FontAwesomeIcon icon={faQuestion} />
+              <Link to="/Library" className="main-icon-link">
+                <FontAwesomeIcon icon={faBook} />
               </Link>
+              <div className="main-icon-label">기술도감</div>
+            </p>
+            <p>
+              <Link to="/community" className="main-icon-link">
+                <FontAwesomeIcon icon={faComment} />
+              </Link>
+              <div className="main-icon-label">커뮤니티</div>
             </p>
           </ul>
         </section>
